@@ -21,7 +21,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     var databases = DatabasesConfig()
     let hostname = Environment.get("DATABASE_HOSTNAME") ?? "localhost"
     let username = Environment.get("DATABASE_USER") ?? "futurDBuser"
-    let databaseName = Environment.get("DATABASE_DB") ?? "futurdb"
+    let databaseName = Environment.get("DATABASE_DB") ?? "futurdbtest"
     let password = Environment.get("DATABASE_PASSWORD") ?? "futurDBpassword"
     
     let databaseConfig = PostgreSQLDatabaseConfig(

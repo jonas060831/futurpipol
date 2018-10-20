@@ -10,15 +10,8 @@ final class Post: Codable {
     var Location: String?
     var Typeofpost: String
     
-    
     var Star: Int?
     var Comment: String?
-    
-    
-    //Timestampable
-//    var createdAtKey: Date?
-//    var updatedAtKey: Date?
-    
     
     init(Text: String?, Image: String?, Video: String?, Location: String?, Typeofpost: String){
         
@@ -37,3 +30,4 @@ extension Post: Migration {}
 
 extension Post: Content {}
 
+extension Post: Parameter {}
