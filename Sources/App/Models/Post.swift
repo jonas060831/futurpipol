@@ -1,5 +1,5 @@
 import Vapor
-import FluentSQLite
+import FluentPostgreSQL
 
 final class Post: Codable {
     
@@ -31,7 +31,7 @@ final class Post: Codable {
     }
 }
 
-extension Post: SQLiteModel {}
+extension Post: PostgreSQLModel {}
 
 extension Post: Migration {}
 
