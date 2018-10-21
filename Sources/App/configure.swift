@@ -36,13 +36,19 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     services.register(databases)
     
     
-    
-    
-    
-
     /// Configure migrations
     var migrations = MigrationConfig()
+    //add the user model
+    migrations.add(model: User.self, database: .psql)
+    //add the post model
     migrations.add(model: Post.self, database: .psql)
+    
     services.register(migrations)
-
+    
+    // 1
+    var commandConfig = CommandConfig.default()
+    // 2
+    commandConfig.useFluentCommands()
+    // 3
+    services.register(commandConfig)
 }
