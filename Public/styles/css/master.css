@@ -1,0 +1,110 @@
+/*reset*/
+*{
+ margin: 0;
+ padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+/*background*/
+.radial-blur-background {
+      height: 640px;
+      background-image: radial-gradient(circle at 50%, #075757, #110f0f 55%);
+      position: relative;
+}
+
+/* font */
+@font-face {
+    font-family: 'AppleSymbols';
+    src: url('./css/font/Apple Symbols.ttf')  format('truetype'),
+}
+/* global font */
+html, body{
+   font-size: 1em !important;
+   color: #fbf5f5 !important;
+   font-family: 'AppleSymbols' !important;
+}
+
+
+
+/* login form */
+
+/* div container for login form*/
+.login-form{
+    background-color: rgba(252, 252, 252, 0.02);
+    padding: 20px;
+    width: 300px;
+    position: absolute;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+}
+
+/* header */
+.login-form-header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 15px;
+  background-color: rgba(247, 249, 250, 0.3);
+  width: inherit;
+  height: 50px;
+  position: absolute;
+  margin: -72px -20px;
+}
+/* login form */
+.login-form input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgba(247, 249, 250, 0.3);
+    color: rgba(255, 255, 255, 1);
+  	text-shadow: 0px 0px 10px #009da6;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 0.5);
+    text-shadow: 0px 0px 10px #009da6;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgba(255, 255, 255, 0.5);
+    text-shadow: 0px 0px 10px #009da6;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(255, 255, 255, 0.5);
+    text-shadow: 0px 0px 10px #009da6;
+}
+
+.login-form input[type=submit] {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 0px 100px;
+    cursor: pointer;
+    background-color: rgba(36, 173, 173, 0.58);
+	  border-color: rgba(96, 213, 219, 0.9);
+	  border-style:solid;text-shadow: 2px 3px 8px #009da6;
+}
+
+.login-form input[type=submit]:hover {
+    background-color: rgb(35, 166, 44);
+    border-color: rgba(249, 255, 255, 0.9);
+}
+/* footer */
+.login-form-footer {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 15px;
+  background-color: rgba(247, 249, 250, 0.3);
+  width: inherit;
+  height: 50px;
+  position: absolute;
+  margin: 21px -20px -100px;
+}

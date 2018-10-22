@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Hello World</title>
-  </head>
-  <body>
-    <h1>Hello World</h1>
-  </body>
-</html>
+#set("content"){
+  <div class="login-form" >
+      <!-- header -->
+      <div class="login-form-header">
+        <i class="fas fa-user-astronaut fa-lg" style="margin:0px 120px;color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;"></i>
+      </div>
+      <!-- body -->
+      <form action="/action_page.php">
+        <input type="text" id="username" name="Username" placeholder="email or mobile number">
+        <input type="password" id="password" name="Password" placeholder="•••••••••••">
+        <input type="submit" value="">
+      </form>
+      <!-- footer -->
+      <div class="login-form-footer">
+        <table>
+          <ul>
+
+          </ul>
+        </table>
+      </div>
+    </div>
+
+}
+#embed("base")

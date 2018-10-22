@@ -1,15 +1,25 @@
 import Vapor
 import Leaf
-// 1
+
 struct WebsiteController: RouteCollection {
-    // 2
+    
     func boot(router: Router) throws {
-        // 3
         router.get(use: indexHandler)
     }
-    // 4
+    
     func indexHandler(_ req: Request) throws -> Future<View> {
-        // 5
-        return try req.view().render("index")
+        return Post.query(on: req).all().flatMap(to: View.self) { posts in
+            let postsData = posts.isEmpty ? nil : posts
+            let context = IndexContext(
+                title: "Home",
+                posts: postsData
+            )
+            return try req.view().render("index", context)
+        }
     }
+}
+
+struct IndexContext: Encodable {
+    let title: String
+    let posts: [Post]?
 }
