@@ -2,7 +2,27 @@
   <div class="login-form" >
       <!-- header -->
       <div class="login-form-header">
-        <i class="fas fa-user-astronaut fa-lg" style="margin:0px 120px;color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;"></i>
+        <table width="100%">
+          <tr>
+            <th style="text-align:left">
+              <i class="fas fa-user-astronaut fa-lg" style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;"></i>
+            </th>
+            <th style="text-align:center;" width="22px">
+
+              <div tabindex="0" class="onclick-menu" style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;">
+                    <i class="fas fa-info-circle"></i>
+                  <ul class="onclick-menu-content">
+                      <li><i class="fas fa-users"></i> : 100</li>
+                      <li><img src="/images/online.png" width="10px" style="margin-bottom:-2px">  &nbsp;: 1</li>
+                      <li><img src="/images/afk.png" width="10px" style="margin-bottom:-2px">  &nbsp;: 0</li>
+                      <li><img src="/images/offline.png" width="10px" style="margin-bottom:-2px"> &nbsp;: 99</li>
+                  </ul>
+              </div>
+
+            </th>
+          </tr>
+        </table>
+
       </div>
       <!-- body -->
       <form action="/action_page.php">
@@ -12,10 +32,15 @@
       </form>
       <!-- footer -->
       <div class="login-form-footer">
-        <table>
-          <ul>
-
-          </ul>
+        <table class="SUorFP" width="100%">
+            <tr>
+              <th style="text-align:left">
+                <a href="#">sign up</a>
+              </th>
+              <th style="text-align:right">
+                <a href="#" >forgot password</a>
+              </th>
+            </tr>
         </table>
       </div>
     </div>

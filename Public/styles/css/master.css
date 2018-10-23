@@ -7,6 +7,26 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  font-weight: 100;
+}
+a:link {
+    color: white;
+}
+/* visited link */
+a:visited {
+    color: white;
+}
+/* mouse over link */
+a:hover {
+    color: white;
+}
+/* selected link */
+a:active {
+    color: white;
+}
+
 /*background*/
 .radial-blur-background {
       height: 640px;
@@ -107,4 +127,47 @@ html, body{
   height: 50px;
   position: absolute;
   margin: 21px -20px -100px;
+}
+
+
+/* on click menu for site info*/
+.onclick-menu {
+    position: relative;
+    display: block;
+}
+.onclick-menu:before {
+    content: "";
+}
+.onclick-menu:focus {
+    /* clicking on label should toggle the menu */
+    pointer-events: none;
+}
+.onclick-menu:focus .onclick-menu-content {
+    /*  opacity is 1 in opened state (see below) */
+    opacity: 1;
+    visibility: visible;
+    width: 100px;
+
+    /* don't let pointer-events affect descendant elements */
+    pointer-events: auto;
+    background-color:rgba(32, 31, 31, 0.9);
+    font-size: 10px;
+    padding: 10px;
+    list-style-type:none;
+    border-radius: 2px;
+    text-align: left;
+    font-weight: 10;
+}
+.onclick-menu-content {
+    position: absolute;
+    z-index: 1;
+    /* use opacity to fake immediate toggle */
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.5s;
+}
+.onclick-menu-content > li {
+  list-style-position:inside;
+  border-bottom: 1px solid rgba(177, 176, 180, 0.42);
+  padding: inherit;
 }
