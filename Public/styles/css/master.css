@@ -6,7 +6,6 @@
 * {
   box-sizing: border-box;
 }
-
 a {
   text-decoration: none;
   font-weight: 100;
@@ -45,14 +44,19 @@ html, body,h1{
    font-size: 1em !important;
    color: #fbf5f5 !important;
    font-family: 'AppleSymbols' !important;
+   background-attachment: fixed;
 }
+
+
+
+
+
 
 
 /* -----------base.leaf PAGE------------- */
 .global-div {
   background-color: rgba(252, 252, 252, 0.02);
   padding: 20px;
-  width: 430px;
   display: block;
   height: 350px;
   top:15%;
@@ -64,7 +68,7 @@ html, body,h1{
   border-top-right-radius: 5px;
   padding: 15px;
   background-color: rgba(247, 249, 250, 0.3);
-  width: inherit;
+  width: 100%;
   height: 50px;
   position: absolute;
   margin: -72px -20px;
@@ -74,7 +78,6 @@ html, body,h1{
   padding: 10px 05px;
   margin: 8px 0;
   display: inline-block;
-  border: 0px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   color: rgba(255, 255, 255, 1);
@@ -86,7 +89,7 @@ html, body,h1{
   border-bottom-right-radius: 5px;
   padding: 15px;
   background-color: rgba(247, 249, 250, 0.3);
-  width: inherit;
+  width: 100%;
   height: 50px;
   position: absolute;
 }
@@ -120,7 +123,7 @@ html, body,h1{
   margin: -72px -20px;
 }
 /* login form */
-.login-form input[type=text], input[type=password] {
+.login-form input[type=text], .login-form input[type=password]  {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -259,8 +262,8 @@ input[type='checkbox'].toggle {
   border-left: 1px solid rgba(4, 221, 251, 0.45);
   padding: .5rem 1rem;
 }
-/* login form */
-.collapsible-content input[type=text], select{
+/* collapsible header */
+.collapsible-content input[type=text], .collapsible-content select{
     width: 100%;
     padding: 5px 13px;
     margin: 8px 0;
@@ -274,7 +277,7 @@ input[type='checkbox'].toggle {
 }
 .collapsible-content {
   max-height: 0px;
-  overflow-y: hidden;
+  overflow: hidden;
   transition: max-height .25s ease-in-out;
 }
 .toggle:checked + .lbl-toggle + .collapsible-content {
@@ -287,4 +290,93 @@ input[type='checkbox'].toggle {
 .toggle:checked + .lbl-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+/* -----------index.leaf PAGE------------- */
+
+/* index grid */
+
+/* mobile grid*/
+.grid-index {
+  display: grid;
+  grid-template-columns:  1fr 1fr;
+  grid-template-areas:
+  "user-section post-section"
+  "feeds-section feeds-section"
+  "extra-section extra-section";
+}
+.user-section{
+   grid-area: user-section;
+}
+.post-section{
+   grid-area: post-section;
+}
+.feeds-section{
+  grid-area: feeds-section;
+}
+.extra-section{
+  grid-area: extra-section;
+}
+/* .grid-index div:nth-child(even){
+  background-color: rgba(5, 244, 251, 0.1);
+}
+.grid-index div:nth-child(odd){
+  background-color: rgba(5, 244, 251, 0.1);
+} */
+
+/* desktop grid */
+@media screen and (min-width: 736px){
+  .grid-index {
+    display: grid;
+    grid-template-columns: auto 250px 140px 250px auto;
+    grid-template-areas:
+    ". user-section post-section post-section extra-section ."
+    ". user-section feeds-section feeds-section extra-section .";
+
+  }
+  .user-section{
+     grid-area: user-section;
+     justify-self: center;
+  }
+  .post-section{
+     grid-area: post-section;
+  }
+  .feeds-section{
+    grid-area: feeds-section;
+  }
+  .extra-section{
+    grid-area: extra-section;
+
+  }
+}
+
+
+.profile-image {
+  width: 30px;
+  height: auto;
+  border-shadow: 0px 0px 10px #009da6;
+  border-radius: 50%;
+}
+.search-container input[type='text'], .search-container button  {
+  background-color: rgba(247, 250, 249, 0);
+  color: #fbf5f5 !important;
+  text-shadow: 0px 0px 10px #009da6;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 3px;
+  width: 190px;
+}
+.search-container button {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgba(36, 173, 173, 0.58);
+  border-color: rgba(96, 213, 219, 0.9);
+  border-style:solid;text-shadow: 2px 3px 8px #009da6;
+}
+.search-container button:hover {
+  background-color: rgb(35, 166, 44);
+  border-color: rgba(249, 255, 255, 0.9);
 }

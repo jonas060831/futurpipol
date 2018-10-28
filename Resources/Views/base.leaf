@@ -24,8 +24,8 @@
       <button class="cn-button" id="cn-button">+</button>
       <div class="cn-wrapper" id="cn-wrapper">
         <ul>
-           <li #if(title == "User"){class="active"}><a href="/user"><span class="fas fa-user-circle"></span></a></li>
-           <li><a href="#"><span class="fas fa-newspaper"></span></a></li>
+           <li #if(title == "User"){class="active"}><a href="/user"><span class="fas fa-cogs"></span></a></li>
+           <li><a href="#"><span class="fas fa-user-circle"></span></a></li>
            <li #if(title == "Home"){class="active"}><a href="/"><span class="fas fa-home"></span></a></li>
            <li><a href="#"><span class="fas fa-user-friends"></span></a></li>
            <li><a href="#"><span class="fas fa-times"></span></a></li>

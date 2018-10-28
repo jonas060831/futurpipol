@@ -205,7 +205,10 @@ items should be rotated by x, minus (sum of angles - 180)2s (for this demo) */
 .csstransforms .cn-wrapper li:not(.active) a:active,
 .csstransforms .cn-wrapper li:not(.active) a:focus {
   background-color: #b31515;
-  background-color: rgba(255, 255, 255, 0.10);
+  background-color: rgba(255, 255, 255, .9);
+  color: rgba(8, 8, 8, 0.57);
+  text-shadow: 0px 0px 10px #05effc;
+  text-shadow: 0px 0px 10px #05effc;
 }
 .csstransforms .cn-wrapper li:not(.active) a:focus
 {
