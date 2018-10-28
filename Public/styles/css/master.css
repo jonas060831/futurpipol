@@ -328,10 +328,10 @@ input[type='checkbox'].toggle {
 @media screen and (min-width: 736px){
   .grid-index {
     display: grid;
-    grid-template-columns: auto 250px 140px 250px auto;
+    grid-template-columns: auto 250px 250px 250px auto;
     grid-template-areas:
-    ". user-section post-section post-section extra-section ."
-    ". user-section feeds-section feeds-section extra-section .";
+    ". user-section post-section post-section extra-section"
+    ". user-section feeds-section feeds-section extra-section";
 
   }
   .user-section{

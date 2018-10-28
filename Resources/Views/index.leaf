@@ -18,11 +18,11 @@
     </div>
   </div>
 
-  <div class="post-section" style="margin-top:71px;">
+  <div class="post-section" style="margin-top:79px;">
 
     <div class="global-div" style="width:100%;height:0px;background:none">
 
-      <div class="global-div-header" style="height: 100px;width:390px;position: fixed;border-top-left-radius: 0px;border-top-right-radius: 0px;">
+      <div class="global-div-header" style="height: 100px;width:501px;position: fixed;border-top-left-radius: 0px;border-top-right-radius: 0px;">
 
       </div>
     </div>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="feeds-section">
-    <div class="global-div" style="width:390px;margin-top:50px; position:fixed;padding:0px 0px;">
+    <div class="global-div" style="width:501px;margin-top:50px; position:fixed;padding:0px 0px;text-align:justify">
         <div class="global-div-body" style="max-height:100%;overflow:auto;padding:0px 0px;margin:0px;">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
