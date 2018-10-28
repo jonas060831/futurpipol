@@ -1,6 +1,128 @@
 #set("content"){
-<h1>User Page</h1>
 
 
+  <div class="global-div">
+
+    <div class="global-div-header">
+      <h1 style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;">FirstName LastName, MiddleInitial.</h1>
+    </div>
+
+    <div class="global-div-body" style="height:300px;overflow:scroll">
+
+      <!-- 1 -->
+      <div class="wrap-collabsible">
+          <input id="collapsible" class="toggle" type="checkbox" checked>
+            <label for="collapsible" class="lbl-toggle">Personal Info</label>
+              <div class="collapsible-content">
+                <div class="content-inner">
+
+                  <h6> • &nbsp;Name</h6>
+                  <form action="/action_page.php">
+                    <input type="text" id="Fname" name="Fname" placeholder="First Name">
+                    <input type="text" id="Lname" name="Lname" placeholder="Last Name">
+                    <input type="text" id="Mname" name="Mname" placeholder="M.I" style="width:40px" maxlength="1">
+                    <br>
+                    <h6> • &nbsp;Birthdate</h6>
+                    <br>
+                    <select class="" name="MM" required style="width:70px;">
+                      <option value="Month" disabled>MM</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                    </select>
+                    <select class="" name="DD" required style="width:70px;">
+                      <option value="DD" disabled>DD</option>
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03">03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                      <option value="24">24</option>
+                      <option value="25">25</option>
+                      <option value="26">26</option>
+                      <option value="27">27</option>
+                      <option value="28">28</option>
+                      <option value="29">29</option>
+                      <option value="30">30</option>
+                      <option value="31">31</option>
+                    </select>
+                  </form>
+                </div>
+        </div>
+       </div>
+       <!-- 2 -->
+       <div class="wrap-collabsible">
+           <input id="collapsible2" class="toggle" type="checkbox">
+             <label for="collapsible2" class="lbl-toggle">Contact Info</label>
+               <div class="collapsible-content">
+                 <div class="content-inner">
+                   <p>
+                     QUnit is by calling one of the object that are embedded in JavaScript, and faster JavaScript program could also used with
+                     its elegant, well documented, and functional programming using JS, HTML pages Modernizr is a popular browsers without
+                     plug-ins. Test-Driven Development.
+                   </p>
+                 </div>
+         </div>
+        </div>
+        <!-- 3 -->
+        <div class="wrap-collabsible">
+            <input id="collapsible3" class="toggle" type="checkbox">
+              <label for="collapsible3" class="lbl-toggle">School(University)</label>
+                <div class="collapsible-content">
+                  <div class="content-inner">
+                    <p>
+                      QUnit is by calling one of the object that are embedded in JavaScript, and faster JavaScript program could also used with
+                      its elegant, well documented, and functional programming using JS, HTML pages Modernizr is a popular browsers without
+                      plug-ins. Test-Driven Development.
+                    </p>
+                  </div>
+          </div>
+         </div>
+    </div>
+    <div class="global-div-footer" style="margin: 17px -20px -100px;">
+    </div>
+  </div>
 }
 #embed("base")
+
+<script type="text/javascript">
+let myLabels = document.querySelectorAll('.lbl-toggle');
+
+ Array.from(myLabels).forEach(label => {
+   label.addEventListener('keydown', e => {
+     // 32 === spacebar
+     // 13 === enter
+     if (e.which === 32 || e.which === 13) {
+       e.preventDefault();
+       label.click();
+     }
+   })
+ })
+</script>

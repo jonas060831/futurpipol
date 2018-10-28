@@ -37,7 +37,7 @@
 
     <!-- nav bar -->
     <script type="text/javascript" src="./styles/js/polyfills.js"></script>
-    <script type="text/javascript" src="./styles/js/main.js"></script>
+    <script type="text/javascript" src="./styles/js/nav.js"></script>
 
     #get(content)
   </body>

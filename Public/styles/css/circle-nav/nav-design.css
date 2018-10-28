@@ -88,6 +88,8 @@
 .cn-button:focus {
   /* font color */
   color: white;
+  /* background */
+  background-color: gray
 }
 
 .csstransforms .cn-wrapper li {
@@ -119,7 +121,7 @@
   right: -7.25em;
   border-radius: 50%;
   text-decoration: none;
-  color: #fff;
+  color: #797575;
   padding-top: 1.8em;
   text-align: center;
   -webkit-transform: skew(-50deg) rotate(-70deg) scale(1);
@@ -179,17 +181,22 @@ items should be rotated by x, minus (sum of angles - 180)2s (for this demo) */
 /* circle color */
 .csstransforms .cn-wrapper li:nth-child(odd) a {
   background-color: #a11313;
-  background-color: hsla(180, 0%, 65%, 0.2);
+  background-color: hsla(0, 0%, 0%, 0.85);
 }
 
 .csstransforms .cn-wrapper li:nth-child(even) a {
   background-color: #a61414;
-  background-color: hsla(180, 0%, 65%, 0.3);
+  background-color: hsla(0, 0%, 0%, 0.85);
 }
 
 /* active style */
 .csstransforms .cn-wrapper li.active a {
-  color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #05effc;
+  /* icon color */
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0px 0px 10px #05effc;
+  text-shadow: 0px 0px 10px #05effc;
+  /* background color */
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 
@@ -198,7 +205,7 @@ items should be rotated by x, minus (sum of angles - 180)2s (for this demo) */
 .csstransforms .cn-wrapper li:not(.active) a:active,
 .csstransforms .cn-wrapper li:not(.active) a:focus {
   background-color: #b31515;
-  background-color: hsla(183, 96%, 50%, 0.5);
+  background-color: rgba(255, 255, 255, 0.10);
 }
 .csstransforms .cn-wrapper li:not(.active) a:focus
 {
