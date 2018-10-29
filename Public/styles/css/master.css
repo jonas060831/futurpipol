@@ -301,21 +301,71 @@ input[type='checkbox'].toggle {
   display: grid;
   grid-template-columns:  1fr 1fr;
   grid-template-areas:
-  "user-section post-section"
-  "feeds-section feeds-section"
-  "extra-section extra-section";
+  "user-section extra-section"
+  "post-section post-section"
+  "feeds-section feeds-section";
 }
 .user-section{
    grid-area: user-section;
 }
+.user-section .global-div{
+width:100%;
+position:fixed;
+}
+.user-section .global-div-body , .user-section .global-div-footer{
+ display: none;
+}
+
 .post-section{
    grid-area: post-section;
 }
+.post-section .global-div-header{
+  position:fixed;
+  margin-top:71px;
+  height: 100px;
+  width:100%;
+  position: fixed;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+
 .feeds-section{
   grid-area: feeds-section;
 }
+.feeds-section .global-div {
+  width:395px;
+  margin-top:100px;
+  height:436px;
+  position:fixed;padding:0px 0px;
+  text-align:justify;
+}
 .extra-section{
   grid-area: extra-section;
+}
+.extra-section .global-div{
+width:100%;
+position:fixed;
+background-color: rgba(251, 251, 249, 0);
+height: 0px;
+}
+.extra-section .global-div-body{
+  display: none;
+  height: 0px;
+}
+.extra-section .global-div-header {
+  height: 50px;
+  width:100%;
+  position: fixed;
+  border-top-left-radius: 0px;
+  background-color: rgba(255, 255, 255, 0);
+}
+.extra-section .global-div-header input[type='text'] {
+  width:150px;
+}
+.extra-section .global-div-footer{
+  display: none;
+  height: 0px;
 }
 /* .grid-index div:nth-child(even){
   background-color: rgba(5, 244, 251, 0.1);
@@ -337,16 +387,77 @@ input[type='checkbox'].toggle {
   .user-section{
      grid-area: user-section;
      justify-self: center;
+     display: block;
+  }
+  .user-section .global-div{
+  width:120px;
+  position:fixed
+
+  }
+  .user-section .global-div-body , .user-section .global-div-footer{
+   display: block;
+  }
+  .user-section .global-div-header{
+    border-top-right-radius: 0px;
   }
   .post-section{
      grid-area: post-section;
+     display: block;
+     margin-top:-59px;
+  }
+  .post-section .global-div-header {
+    height: 100px;
+    width:501px;
+    position: fixed;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
   }
   .feeds-section{
     grid-area: feeds-section;
+    display: block;
+  }
+  .feeds-section .global-div {
+    width:501px;
+    margin-top:50px;
+    height:436px;
+    position:fixed;padding:0px 0px;
+    text-align:justify;
   }
   .extra-section{
     grid-area: extra-section;
+    display: block;
+    width:250px;
+    margin-top:20px;
+    margin-left:5px;
 
+  }
+  .extra-section .global-div{
+  position:fixed;
+  background-color: rgba(252, 249, 249, 0.02);
+  height: 353px;
+  width:250px;
+  }
+  .extra-section .global-div-body{
+    display: block;
+  }
+
+  .extra-section .global-div-footer{
+    display: block;
+  }
+  .extra-section .global-div-header {
+    height: 50px;
+    width:250px;
+    position: fixed;
+    border-top-left-radius: 0px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  .extra-section .global-div-footer {
+    margin: 301px -20px -100px;
+    height: 50px;
+    border-bottom-left-radius: 0px;
+  }
+  .extra-section .global-div-header input[type='text'] {
+    width:190px;
   }
 }
 

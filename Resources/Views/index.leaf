@@ -1,11 +1,11 @@
 #set("content"){
 
-<div class="grid-index" style="width:250px;">
+<div class="grid-index">
 
   <div class="user-section">
-    <div class="global-div" style="width:120px;position:fixed">
+    <div class="global-div" style="">
 
-      <div class="global-div-header" style="border-top-right-radius: 0px;">
+      <div class="global-div-header">
         <p class="" style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;font-size:9px"><img class="profile-image" align="middle" src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg">&nbsp;John Doe, Q.</p>
       </div>
       <div class="global-div-body" style="padding:0px">
@@ -18,11 +18,11 @@
     </div>
   </div>
 
-  <div class="post-section" style="margin-top:79px;">
+  <div class="post-section" style="">
 
     <div class="global-div" style="width:100%;height:0px;background:none">
 
-      <div class="global-div-header" style="height: 100px;width:501px;position: fixed;border-top-left-radius: 0px;border-top-right-radius: 0px;">
+      <div class="global-div-header" style="">
 
       </div>
     </div>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="feeds-section">
-    <div class="global-div" style="width:501px;margin-top:50px; position:fixed;padding:0px 0px;text-align:justify">
+    <div class="global-div" style="">
         <div class="global-div-body" style="max-height:100%;overflow:auto;padding:0px 0px;margin:0px;">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -48,14 +48,13 @@
     </div>
 
   </div>
-  <div class="extra-section" style="width:250px;margin-top:20px;margin-left:5px;">
+  <div class="extra-section" style="">
 
-  <div class="global-div" style="width:250px;position:fixed;">
+  <div class="global-div" style="">
 
-      <div class="global-div-header" style="height: 50px;width:250px;position: fixed;border-top-left-radius: 0px;">
-        <table style="width:100%;">
-          <th>
-          </th>
+      <div class="global-div-header" style="">
+        <table>
+
           <th style="text-align:right">
             <div class="search-container">
               <form action="/action_page.php">
@@ -71,7 +70,7 @@
         extra stuff goes here
       </div>
 
-      <div class="global-div-footer" style="margin: 281px -20px -100px;border-bottom-left-radius: 0px;">
+      <div class="global-div-footer" style="">
 
       </div>
 
