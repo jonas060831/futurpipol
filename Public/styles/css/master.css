@@ -281,7 +281,7 @@ input[type='checkbox'].toggle {
   transition: max-height .25s ease-in-out;
 }
 .toggle:checked + .lbl-toggle + .collapsible-content {
-  max-height: 350px;
+  max-height: 450px;
 }
 .toggle:checked + .lbl-toggle::before {
   transform: rotate(90deg) translateX(-3px);
@@ -301,9 +301,11 @@ input[type='checkbox'].toggle {
   display: grid;
   grid-template-columns:  1fr 1fr;
   grid-template-areas:
-  "user-section extra-section"
+  "extra-section extra-section"
+  "user-section user-section"
   "post-section post-section"
   "feeds-section feeds-section";
+
 }
 .user-section{
    grid-area: user-section;
@@ -311,6 +313,12 @@ input[type='checkbox'].toggle {
 .user-section .global-div{
 width:100%;
 position:fixed;
+margin-top: 50px;
+
+}
+.user-section .global-div-header{
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
 }
 .user-section .global-div-body , .user-section .global-div-footer{
  display: none;
@@ -321,7 +329,7 @@ position:fixed;
 }
 .post-section .global-div-header{
   position:fixed;
-  margin-top:71px;
+  margin-top:121px;
   height: 100px;
   width:100%;
   position: fixed;
@@ -334,8 +342,8 @@ position:fixed;
   grid-area: feeds-section;
 }
 .feeds-section .global-div {
-  width:395px;
-  margin-top:100px;
+  width:400px;
+  margin-top:150px;
   height:436px;
   position:fixed;padding:0px 0px;
   text-align:justify;
@@ -348,6 +356,7 @@ width:100%;
 position:fixed;
 background-color: rgba(251, 251, 249, 0);
 height: 0px;
+
 }
 .extra-section .global-div-body{
   display: none;
@@ -357,11 +366,10 @@ height: 0px;
   height: 50px;
   width:100%;
   position: fixed;
-  border-top-left-radius: 0px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .extra-section .global-div-header input[type='text'] {
-  width:150px;
+  width:340px;
 }
 .extra-section .global-div-footer{
   display: none;
@@ -383,15 +391,18 @@ height: 0px;
     ". user-section post-section post-section extra-section"
     ". user-section feeds-section feeds-section extra-section";
 
+
   }
   .user-section{
      grid-area: user-section;
      justify-self: center;
      display: block;
+
   }
   .user-section .global-div{
   width:120px;
-  position:fixed
+  position:fixed;
+  margin-top:0px;
 
   }
   .user-section .global-div-body , .user-section .global-div-footer{
@@ -404,6 +415,9 @@ height: 0px;
      grid-area: post-section;
      display: block;
      margin-top:-59px;
+  }
+  .post-section .global-div {
+    margin-top:-50px;
   }
   .post-section .global-div-header {
     height: 100px;
@@ -436,6 +450,7 @@ height: 0px;
   background-color: rgba(252, 249, 249, 0.02);
   height: 353px;
   width:250px;
+
   }
   .extra-section .global-div-body{
     display: block;
@@ -479,8 +494,8 @@ height: 0px;
   width: 190px;
 }
 .search-container button {
-  height: 20px;
   width: 20px;
+  height: 20px;
   border-radius: 50%;
   cursor: pointer;
   background-color: rgba(36, 173, 173, 0.58);
@@ -490,4 +505,13 @@ height: 0px;
 .search-container button:hover {
   background-color: rgb(35, 166, 44);
   border-color: rgba(249, 255, 255, 0.9);
+}
+.form-post button{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgba(36, 173, 173, 0.58);
+  border-color: rgba(96, 213, 219, 0.9);
+  border-style:solid;text-shadow: 2px 3px 8px #009da6;
 }

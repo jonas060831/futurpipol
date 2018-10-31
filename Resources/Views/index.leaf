@@ -6,7 +6,7 @@
     <div class="global-div" style="">
 
       <div class="global-div-header">
-        <p class="" style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;font-size:9px"><img class="profile-image" align="middle" src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg">&nbsp;John Doe, Q.</p>
+        <p class="" style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;font-size:12px"><img class="profile-image" align="middle" src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg">&nbsp;John Doe, Q.</p>
       </div>
       <div class="global-div-body" style="padding:0px">
         <!-- TODO: will create a table for friends games pages etc -->
@@ -23,6 +23,56 @@
     <div class="global-div" style="width:100%;height:0px;background:none">
 
       <div class="global-div-header" style="">
+
+        <div class="">
+          <!-- since we are posting videos and images too -->
+<form name="PostForm" class="form-post" method="post" onsubmit="return validatePostData()" enctype="multipart/form-data">
+
+  <div class="form-header" style="">
+    <div class="form-group">
+      <span class="settings" style="float:right;color:rgba(255, 255, 255, 1);"><i class="fas fa-ellipsis-v fa-sm"></i></span>
+      <h4 style="" align="center">Create a Post</h4>
+    </div>
+  </div>
+
+  <div class="form-body" style="">
+  <div class="form-group" style="margin-left:-10px;">
+
+
+
+          <input type="text" class="search-container" name="Text"  id="textInputOnly" placeholder="Thoughts.." style="width:100%;padding:5px;background:none;border:none;color:white">
+  </div>
+</div>
+<div class="" style="margin: 0px auto;">
+    <table class="" style="">
+      <tr>
+        <td class="" id="Upload-Image" onclick="document.getElementById('ImageInput').click();">
+          <i class="fas fa-camera fa-lg media-icon"></i>
+        </td>
+        <td class="" style="padding:5px"><i class="fas fa-video fa-lg media-icon"></i></td>
+        <td class=""style="padding:5px"><i class="fas fa-images fa-lg media-icon"></i></td>
+        <td class=""style="padding:5px"><i class="fas fa-map-marker-alt fa-lg media-icon"></i></td>
+
+        <td class="media" width="300px" align="center">
+          <!-- hide this -->
+          <!-- Submit Post Button -->
+          <button class="search-container" name="PostButton" onclick=""></button>
+        </td>
+        <td class="media">
+            <div class="select-style">
+              <select name="Typeofpost">
+                <option class="opt" value="Public" selected>Public</option>
+                <option class="opt" value="Friends Only" disabled>Friends Only</option>
+                <option class="opt" value="Only Me" disabled>Only Me</option>
+                <option class="opt" value="Customize" disabled>Customize</option>
+              </select>
+            </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  </form>
+        </div>
 
       </div>
     </div>
