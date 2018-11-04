@@ -14,6 +14,7 @@
     <!-- nav bar -->
     <link rel="stylesheet" href="./styles/css/circle-nav/normalize.css">
     <link rel="stylesheet" href="./styles/css/circle-nav/nav-design.css">
+    <link rel="stylesheet" href="./styles/css/preloader/global-preloader.css">
     <script src="./styles/js/modernizr-2.6.2.min.js"></script>
 
     <!-- jquery -->
@@ -21,8 +22,12 @@
 
   </head>
   <body class="radial-blur-background">
-    <!-- circle navigation bar -->
 
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+    <!-- circle navigation bar -->
     #if(title != "Log In"){
       <button class="cn-button" id="cn-button">+</button>
       <div class="cn-wrapper" id="cn-wrapper">
@@ -40,6 +45,7 @@
     <!-- nav bar -->
     <script type="text/javascript" src="./styles/js/polyfills.js"></script>
     <script type="text/javascript" src="./styles/js/nav.js"></script>
+    <script type="text/javascript" src="./styles/js/global-preloader.js"></script>
     #get(content)
   </body>
 </html>

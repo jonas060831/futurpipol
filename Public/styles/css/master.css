@@ -1,4 +1,5 @@
 /*reset*/
+
 *{
  margin: 0;
  padding: 0;
@@ -50,33 +51,22 @@ html, body,h1{
 
 
 
-
-
-
 /* -----------base.leaf PAGE------------- */
 .global-div {
   background-color: rgba(252, 252, 252, 0.02);
-  padding: 20px;
-  display: block;
-  height: 350px;
-  top:15%;
   margin: 0px auto;
 }
 /* header */
 .global-div-header {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 15px;
   background-color: rgba(247, 249, 250, 0.3);
   width: 100%;
   height: 50px;
-  position: absolute;
-  margin: -72px -20px;
 }
 .global-div-body {
   width: 100%;
-  padding: 10px 05px;
-  margin: 8px 0;
+  height: 400px;
   display: inline-block;
   border-radius: 4px;
   box-sizing: border-box;
@@ -87,11 +77,9 @@ html, body,h1{
 .global-div-footer {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  padding: 15px;
   background-color: rgba(247, 249, 250, 0.3);
   width: 100%;
   height: 50px;
-  position: absolute;
 }
 
 
@@ -292,31 +280,50 @@ input[type='checkbox'].toggle {
   border-bottom-left-radius: 0;
 }
 
+
+
+
+
 /* -----------index.leaf PAGE------------- */
+.container-searchSection input[type=text]  {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-top-left-radius:4px;
+    border-top-right-radius: 4px;
+    font-size: 16px;
+    background: none;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 6px 10px 6px 20px;
+    color: white;
+}
+
+.profileImage{
+  width: 30px;
+  height: auto;
+  border-radius: 50%;
+}
 
 .container {
   /* occupy the whole screen width when using mobile and tablet */
   width: 100%;
+  margin-top: 10px;
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: 50% 50%;
   grid-gap:5px;
   grid-template-areas:
-  "container-searchSection"
-  "container-userSection"
-  "container-postSection"
-  "container-feedSection"
-  "container-extraSection"
+  "container-searchSection container-searchSection"
+  "container-userSection container-userSection"
+  "container-postSection container-postSection"
+  "container-feedSection container-feedSection"
+  "container-extraSection container-extraSection"
 }
 
-.container div:nth-child(odd) { background-color: rgba(84, 189, 183, 0.20);}
-.container div:nth-child(even) { background-color: rgba(84, 189, 183, 0.10);}
+/* .container div:nth-child(odd) { background-color: rgba(84, 189, 183, 0.20);}
+.container div:nth-child(even) { background-color: rgba(84, 189, 183, 0.10);} */
 
 /* Tablet and mobile*/
-.container{
-  width: 960px;
-  margin:0px auto;
-  margin-top: 50px;
-}
 
 .container-searchSection {
   grid-area: container-searchSection;
@@ -340,11 +347,26 @@ input[type='checkbox'].toggle {
   display: none;
 }
 
+/* tablet and mobile */
+@media screen and (max-width: 960px){
+
+  .global-div-body{
+    display: none;
+    height: 0px;
+  }
+  .global-div-footer{
+    display: none;
+    height: 0px;
+  }
+}
+
 /* Desktop Version */
 @media screen and (min-width: 960px){
 
   .container {
-
+    width: 960px;
+    margin: 0px auto;
+    margin-top: 10px;
   	display: grid;
   	grid-template-columns: 150px 610px 200px;
   	grid-gap:5px;
@@ -353,18 +375,38 @@ input[type='checkbox'].toggle {
   	"container-userSection container-postSection container-extraSection"
   	"container-userSection container-feedSection container-extraSection"
   }
-  .container-searchSection{
-    text-align: right;
+  .container-searchSection input[type=text]{
+    width: 100%;
   }
   .container-userSection{
-    height: 400px;
-    margin-top: 20px;
+    height: auto;
+    margin-top: 34.8px;
     width: 150px;
     position: fixed;
+  }
+  .user-nav{
+    color:white;
+    text-shadow: none;
+
+  }
+  .user-nav ul{
+    width: 100%;
+    padding: 5px;
+  }
+  .user-nav li a:hover:not(.active) {
+    text-shadow: 0px 0px 10px #009da6;
+
+  }
+  .user-nav li.active a {
+    text-shadow: 0px 0px 10px #009da6;
   }
   .container-extraSection{
     height: 400px;
     display: block;
+    position: fixed;
+    margin-top: 34.8px;
+    width: 200px;
+    margin-left: 770px;
   }
 
 }

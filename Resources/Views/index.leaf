@@ -3,11 +3,55 @@
   <div class="container">
 
     <div id="searchSection" class="container-searchSection">
-        searchBox 1
+        <form class="" action="index.html" method="post">
+          <input type="text" name="search" placeholder="Search..">
+        </form>
     </div>
 
     <div class="container-userSection">
-        userSection 2
+        <div class="global-div">
+
+            <div class="global-div-header" style="padding:10px;border-top-left-radius:0px;border-top-right-radius:0px;">
+              <a href="/user">
+              <table>
+                <th>
+                  <img class="profileImage" src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg">
+                </th>
+                <th style="font-size:10px;">&nbsp;Fname,Lname That is Super Long,M.I</th>
+              </table>
+              </a>
+            </div>
+
+            <div class="global-div-body" style="padding:10px;">
+              <div class="user-nav">
+                <ul>
+                  <li #if(title == "Home"){class="active"}>
+                    <a href="/">
+                      <i class="fas fa-newspaper fa-sm"></i>
+                      &nbsp;News
+                    </a>
+                  </li>
+                  <li #if(title == "Groups"){class="active"}>
+                    <a href="#">
+                      <i class="fas fa-users"></i>
+                      Groups
+                    </a>
+                  </li>
+                  <li #if(title == "Settings"){class="active"}>
+                    <a href="#">
+                      <i class="fas fa-cogs"></i>
+                      Setings
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="global-div-footer" style="border-bottom-right-radius:0px">
+                footer
+            </div>
+
+
+        </div>
     </div>
     <div class="container-postSection">
         postSection 3
