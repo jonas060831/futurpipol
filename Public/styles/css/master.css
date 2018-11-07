@@ -341,7 +341,7 @@ input[type='checkbox'].toggle {
 }
 .postForm-input-container {
   position: relative;
-  margin-top: 88px;
+  margin-top: 28px;
 
 }
 .postForm-input-container input[type=text]{
@@ -370,9 +370,11 @@ input[type='checkbox'].toggle {
 }
 .container-postSection .global-div-footer {
   margin: 0px auto;
-  max-width: 400px;
+  max-width: 450px;
   height:auto;
   background:none;
+  padding-left:50px;
+  padding-right:50px;
 }
 
 .postForm-button {
@@ -387,12 +389,6 @@ input[type='checkbox'].toggle {
 .postForm-button:hover {
   background-color: rgba(16, 254, 4, 0.58);
   border-color: rgba(16, 254, 4, 0.9);
-}
-.container-postSection .global-div-footer {
-  margin: 0px auto;
-  padding:50px;
-  height:auto;
-  background:none;
 }
 
 .media {
@@ -508,5 +504,11 @@ input[type='checkbox'].toggle {
   }
   .user-nav table td:nth-child(odd) {
     width: 20px;
+  }
+  /* medialink holder */
+  .container-postSection .global-div-footer {
+
+    max-width: 450px;
+
   }
 }

@@ -53,7 +53,7 @@
                     </a>
                   </li>
                   <li #if(title == "Settings"){class="active"}>
-                    <a href="#">
+                    <a href="/settings">
                       <table class="nav-links-text">
                         <tr>
                           <td><i class="fas fa-cogs"></i></td>
@@ -76,7 +76,7 @@
               </div>
             </div>
             <div class="global-div-footer" style="border-bottom-right-radius:0px">
-                footer
+                <!-- footer -->
             </div>
         </div>
     </div>

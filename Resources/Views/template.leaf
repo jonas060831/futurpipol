@@ -1,0 +1,7 @@
+#set("content"){
+  <!-- starting point for all project -->
+  <div class="container">
+
+  </div>
+}
+#embed("base")

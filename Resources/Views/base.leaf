@@ -25,7 +25,7 @@
 
     <!-- Preloader -->
     <div id="preloader">
-        <div class="spinner"></div>
+      <i class="fas fa-redo-alt fa-spin" style="font-size:48px;color:#06f2ff"></i>
     </div>
     <!-- circle navigation bar -->
     #if(title != "Log In"){

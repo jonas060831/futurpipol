@@ -7,6 +7,7 @@ struct WebsiteController: RouteCollection {
         router.get(use: indexHandler)
         router.get("login", use: loginHandler)
         router.get("user", use: userHandler)
+        router.get("settings", use: settingsHandler)
     }
     
     func indexHandler(_ req: Request) throws -> Future<View> {
@@ -35,6 +36,11 @@ struct WebsiteController: RouteCollection {
         let context = LoginContext(title: "Log In")
         return try req.view().render("login", context)
     }
+    
+    func settingsHandler(_ req: Request) throws -> Future<View> {
+        let context = settingsContext(title: "Settings")
+        return try req.view().render("settings", context)
+    }
 }
 
 struct IndexContext: Encodable {
@@ -48,4 +54,7 @@ struct LoginContext: Encodable {
 struct UserContext: Encodable {
     let title: String
     let user: [User]?
+}
+struct settingsContext: Encodable {
+    let title: String;
 }
