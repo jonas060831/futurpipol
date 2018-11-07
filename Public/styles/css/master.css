@@ -408,6 +408,7 @@ input[type='checkbox'].toggle {
 .container-userSection {
 
 	grid-area: container-userSection;
+  display: none;
 
 }
 .container-postSection {
@@ -422,6 +423,8 @@ input[type='checkbox'].toggle {
 
 	grid-area: container-extraSection;
   display: none;
+}
+@media screen and (max-width:959){
 }
 
 /* Desktop Version */
