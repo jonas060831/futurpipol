@@ -107,7 +107,7 @@
                   </div>
               </div>
             </div>
-            <div class="global-div-footer" style="padding:10px;height:auto;background:none;max-width:300px;margin:0px auto;">
+            <div class="global-div-footer" style="">
               <table class="postForm-footer" width="100%" style="">
                   <tr>
                     <!-- media link -->
@@ -123,7 +123,7 @@
                     </td>
                     <td class="typeofpost" style="text-align:left">
                       <div class="select-style">
-                        <select name="Typeofpost">
+                        <select class="media" name="Typeofpost">
                           <option class="opt" value="Public" selected>Public</option>
                           <option class="opt" value="Friends Only" disabled>Friends Only</option>
                           <option class="opt" value="Only Me" disabled>Only Me</option>

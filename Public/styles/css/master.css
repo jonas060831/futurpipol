@@ -368,6 +368,12 @@ input[type='checkbox'].toggle {
   padding:0px 5px 0px 5px;
   color:rgb(180, 182, 180);
 }
+.container-postSection .global-div-footer {
+  margin: 0px auto;
+  max-width: 400px;
+  height:auto;
+  background:none;
+}
 
 .postForm-button {
   width: 50px;
@@ -382,6 +388,22 @@ input[type='checkbox'].toggle {
   background-color: rgba(16, 254, 4, 0.58);
   border-color: rgba(16, 254, 4, 0.9);
 }
+.container-postSection .global-div-footer {
+  margin: 0px auto;
+  padding:50px;
+  height:auto;
+  background:none;
+}
+
+.media {
+  cursor:pointer;
+}
+.media i:hover , .media select:hover {
+  opacity: 0.7;
+}
+
+
+
 
 .container {
   /* occupy the whole screen width when using mobile and tablet */
@@ -450,6 +472,7 @@ input[type='checkbox'].toggle {
     margin-top: 38px;
     width: 150px;
     position: fixed;
+    display: block;
   }
   .usersName img {
     bottom:3px;
