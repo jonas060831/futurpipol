@@ -378,6 +378,10 @@ input[type='checkbox'].toggle {
   border-color: rgba(96, 213, 219, 0.9);
   border-style:solid;text-shadow: 2px 3px 8px #009da6;
 }
+.postForm-button:hover {
+  background-color: rgba(16, 254, 4, 0.58);
+  border-color: rgba(16, 254, 4, 0.9);
+}
 
 .container {
   /* occupy the whole screen width when using mobile and tablet */

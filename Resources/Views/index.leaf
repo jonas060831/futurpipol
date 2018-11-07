@@ -107,7 +107,7 @@
                   </div>
               </div>
             </div>
-            <div class="global-div-footer" style="padding:10px;height:auto;background:none;max-width:400px;margin:0px auto;">
+            <div class="global-div-footer" style="padding:10px;height:auto;background:none;max-width:300px;margin:0px auto;">
               <table class="postForm-footer" width="100%" style="">
                   <tr>
                     <!-- media link -->
