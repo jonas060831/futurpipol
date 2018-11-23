@@ -14,22 +14,19 @@
     <div class="container-userSection">
         <div class="global-div">
 
-            <div class="global-div-header" style="padding:10px;border-top-left-radius:0px;border-top-right-radius:0px;">
-
+            <div class="global-div-header" style="padding:15px 0px 10px 12px;border-top-left-radius:5px;">
               <table>
                 <th>
-                  <a href="/user">
-
-                  <span class="usersName" style="font-size:12px;font-weight:50">
+                  <a href="/profile">
+                  <span class="usersName" style="font-size:14px;font-weight:50">
                     <img class="profileImage" align="middle" src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg"/>
                     John Doe Q.</span>
                   </a>
                 </th>
               </table>
-
             </div>
 
-            <div class="global-div-body" style="padding:10px;">
+            <div class="global-div-body" style="padding:10px;height:400px;">
               <div class="user-nav">
                 <ul>
                   <li #if(title == "Home"){class="active"}>
@@ -38,6 +35,16 @@
                         <tr>
                           <td><i class="fas fa-newspaper fa-sm"></i></td>
                           <td>Feeds</td>
+                        </tr>
+                      </table>
+                    </a>
+                  </li>
+                  <li #if(title == "Messages"){class="active"}>
+                    <a href="/messages">
+                      <table class="nav-links-text">
+                        <tr>
+                          <td><i class="fas fa-comments"></i></td>
+                          <td>Messages</td>
                         </tr>
                       </table>
                     </a>
@@ -75,15 +82,15 @@
                 </ul>
               </div>
             </div>
-            <div class="global-div-footer" style="border-bottom-right-radius:0px">
+            <div class="global-div-footer" style="border-bottom-left-radius:5px">
                 <!-- footer -->
             </div>
         </div>
     </div>
-    <div class="container-postSection">
-        <div class="global-div" style="background:none;">
+    <div class="container-postSection" style="">
+        <div class="global-div" style="">
           <form action="action.php" method="post" >
-            <div class="global-div-header" style="border-top-left-radius: 0px; border-top-right-radius: 0px;padding:15px">
+            <div class="global-div-header" style="padding:15px">
               <table class="postForm-header" width="100%">
                   <th width="1%">
                     <i class="fas fa-edit fa-sm"></i>
@@ -100,23 +107,24 @@
               <div class="postForm-body">
                   <div class="postForm-input-container">
 
-                    <a href="/user">
+                    <a href="/profile">
                     <img class="postText-image" style="position:relative;cursor:pointer" alt="Jon Doe Q." src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg" />
                     </a>
                     <input class="postForm-Text" type="text" name="Text" placeholder="Thoughts..">
                   </div>
               </div>
+              <hr style="margin-top:10px;margin-top:10px;margin-bottom:10px;" noshade>
             </div>
-            <div class="global-div-footer" style="">
-              <table class="postForm-footer" width="100%" style="">
+            <div class="global-div-footer" style="" >
+              <table class="postForm-footer" width="100%">
                   <tr>
                     <!-- media link -->
-                    <td width="0%" class="media" id="upload-single-image" onclick="">
+                    <td class="media" style="text-align:right" id="upload-single-image" onclick="">
                       <i class="fas fa-camera fa-lg media-icon"></i>
                     </td>
-                    <td width="0%" class="media"><i class="fas fa-video fa-lg media-icon"></i></td>
-                    <td width="0%" class="media"><i class="fas fa-images fa-lg media-icon"></i></td>
-                    <td width="0%" class="media"><i class="fas fa-map-marker-alt fa-lg media-icon"></i></td>
+                    <td class="media" style="text-align:right" ><i class="fas fa-video fa-lg media-icon"></i></td>
+                    <td class="media" style="text-align:right" ><i class="fas fa-images fa-lg media-icon"></i></td>
+                    <td class="media" style="text-align:right" ><i class="fas fa-map-marker-alt fa-lg media-icon"></i></td>
                     <!-- post button -->
                     <td class="button-loc" style="text-align:center">
                       <button class="postForm-button" name="PostButton"></button>
@@ -138,41 +146,57 @@
         </div>
     </div>
     <div class="container-feedSection">
-      <p>
-        feedSection 4<br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+
+        <!-- global post will be shown here -->
+        <!-- TODO
+        1. show 100 post in a page
+        2. ability to show more post once button is click
+        3. if no more post show a message
+        4. new post to old post sortation
+        5. live notification when a user is modifying post
+        -->
+
+    #if(posts){
+          #for(post in posts){
+          <div class="global-div"style="background:none">
+            <div class="global-div-header" style="background-color:rgba(255, 255, 255, 0.2);padding:20px;">
+                picture,name,useragent,timestamp, typeof post and settings shows here<br>
+            </div>
+            <div class="global-div-body" style="background-color:rgba(255, 255, 255, 0.2);border-radius:0px;border:1px solid white;">
+              #(post.Text)
+              #(post.Video)
+              #(post.Image)
+              #(post.Images)
+              <br>
+              whereas public friends or cuztomize post will be shown to you by peole
+
+
+            </div>
+            <div class="global-div-footer" style="background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius: 0px;">
+              comment box and button will show here
+            </div>
+          </div>
+        }
+    }else {
+      <h1>No post yet!</h1>
+    }
+
     </div>
     <div class="container-extraSection">
-      extra Section 5 <br>
-      extra stuff goes here
+      <div class="global-div">
+        <div class="global-div-header" style="border-top-right-radius:5px;">
+          extra Section 5
+        </div>
+
+        <div class="global-div-body" style="height:400px;">
+          body
+          extra stuff goes here
+        </div>
+
+        <div class="global-div-footer" style="border-bottom-right-radius:5px;">
+          footer
+        </div>
+      </div>
     </div>
 
   </div>

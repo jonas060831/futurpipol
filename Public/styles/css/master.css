@@ -58,8 +58,7 @@ html, body,h1{
 }
 /* header */
 .global-div-header {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+
   background-color: rgba(247, 249, 250, 0.3);
   width: 100%;
   height: 50px;
@@ -74,8 +73,6 @@ html, body,h1{
 }
 /* footer */
 .global-div-footer {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   background-color: rgba(247, 249, 250, 0.3);
   width: 100%;
   height: 50px;
@@ -124,18 +121,15 @@ html, body,h1{
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgba(255, 255, 255, 0.5);
-    text-shadow: 0px 0px 10px #009da6;
     opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: rgba(255, 255, 255, 0.5);
-    text-shadow: 0px 0px 10px #009da6;
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: rgba(255, 255, 255, 0.5);
-    text-shadow: 0px 0px 10px #009da6;
 }
 
 .login-form input[type=submit] {
@@ -162,7 +156,7 @@ html, body,h1{
   width: inherit;
   height: 50px;
   position: absolute;
-  margin: 25px -20px -100px;
+  margin: 18px -20px -50px;
 }
 
 
@@ -171,6 +165,7 @@ html, body,h1{
     position: relative;
     display: block;
     cursor: pointer;
+    outline:none;
 }
 .onclick-menu:before {
     content: "";
@@ -341,7 +336,7 @@ input[type='checkbox'].toggle {
 }
 .postForm-input-container {
   position: relative;
-  margin-top: 28px;
+  margin-top:15px;
 
 }
 .postForm-input-container input[type=text]{
@@ -359,7 +354,6 @@ input[type='checkbox'].toggle {
   color: white;
 }
 .postForm-Text::placeholder {
-  font-style: italic;
   text-shadow: none;
 }
 .postForm-input-container img {
@@ -370,12 +364,11 @@ input[type='checkbox'].toggle {
 }
 .container-postSection .global-div-footer {
   margin: 0px auto;
-  max-width: 450px;
   height:auto;
-  background:none;
-  padding-left:50px;
-  padding-right:50px;
+  background: none;
+  padding-left: 10px;
 }
+
 
 .postForm-button {
   width: 50px;
@@ -388,7 +381,7 @@ input[type='checkbox'].toggle {
 }
 .postForm-button:hover {
   background-color: rgba(16, 254, 4, 0.58);
-  border-color: rgba(16, 254, 4, 0.9);
+  border-color: white;
 }
 
 .media {
@@ -442,8 +435,6 @@ input[type='checkbox'].toggle {
 	grid-area: container-extraSection;
   display: none;
 }
-@media screen and (max-width:959){
-}
 
 /* Desktop Version */
 @media screen and (min-width: 960px){
@@ -453,7 +444,7 @@ input[type='checkbox'].toggle {
     margin: 0px auto;
     margin-top: 10px;
   	display: grid;
-  	grid-template-columns: 150px 610px 200px;
+  	grid-template-columns: 200px 560px 200px;
   	grid-gap:5px;
   	grid-template-areas:
     "container-searchSection container-searchSection container-searchSection"
@@ -466,7 +457,7 @@ input[type='checkbox'].toggle {
   .container-userSection{
     height: auto;
     margin-top: 38px;
-    width: 150px;
+    width: 200px;
     position: fixed;
     display: block;
   }
@@ -507,8 +498,8 @@ input[type='checkbox'].toggle {
   }
   /* medialink holder */
   .container-postSection .global-div-footer {
-
     max-width: 450px;
-
   }
 }
+
+/* -----------settings.leaf PAGE------------- */

@@ -6,7 +6,7 @@ struct WebsiteController: RouteCollection {
     func boot(router: Router) throws {
         router.get(use: indexHandler)
         router.get("login", use: loginHandler)
-        router.get("user", use: userHandler)
+        router.get("profile", use: profileHandler)
         router.get("settings", use: settingsHandler)
     }
     
@@ -20,23 +20,20 @@ struct WebsiteController: RouteCollection {
             return try req.view().render("index", context)
         }
     }
-    
-    func userHandler(_ req: Request) throws -> Future<View> {
-        return User.query(on: req).all().flatMap(to: View.self) { user in
-            let userData = user.isEmpty ? nil : user
-            let context = UserContext(
-                title: "User",
-                user: userData
+    func profileHandler(_ req: Request) throws -> Future<View> {
+        return User.query(on: req).all().flatMap(to: View.self) { users in
+            let userData = users.isEmpty ? nil : users
+            let context = ProfileContext(
+                title: "Profile",
+                users: userData
             )
-            return try req.view().render("user", context)
+            return try req.view().render("profile", context)
         }
     }
-    
     func loginHandler(_ req: Request) throws -> Future<View> {
         let context = LoginContext(title: "Log In")
         return try req.view().render("login", context)
     }
-    
     func settingsHandler(_ req: Request) throws -> Future<View> {
         let context = settingsContext(title: "Settings")
         return try req.view().render("settings", context)
@@ -47,13 +44,12 @@ struct IndexContext: Encodable {
     let title: String
     let posts: [Post]?
 }
-
+struct ProfileContext: Encodable {
+    let title: String
+    let users: [User]?
+}
 struct LoginContext: Encodable {
     let title: String
-}
-struct UserContext: Encodable {
-    let title: String
-    let user: [User]?
 }
 struct settingsContext: Encodable {
     let title: String;

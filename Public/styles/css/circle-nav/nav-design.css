@@ -18,7 +18,7 @@
   position: fixed;
   z-index: 10;
   bottom: -13em;
-  left: 47.5%;
+  left: 50%;
   border-radius: 50%;
   margin-left: -13em;
   -webkit-transform: scale(0.1);
@@ -75,7 +75,7 @@
   /* background-color */
   background-color: white;
   position: fixed;
-  left: 47.5%;
+  left: 50%;
   margin-left: -1.75em;
   bottom: -1.75em;
   border-radius: 50%;

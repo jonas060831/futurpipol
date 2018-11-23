@@ -12,6 +12,12 @@ final class Post: Codable {
     
     var userID: User.ID
     
+    static let createdAtKey: TimestampKey? = \Post.createdAt
+    static let updatedAtKey: TimestampKey? = \Post.updatedAt
+    
+    var createdAt: Date?
+    var updatedAt: Date?
+    
     var Star: Int?
     var Comment: String?
     
@@ -47,3 +53,4 @@ extension Post: Migration {
         }
     }
 }
+

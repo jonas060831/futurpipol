@@ -8,9 +8,17 @@ final class User: Codable {
     var Name: String
     var Username: String
     
-    init(Name: String, Username: String) {
+    var ProfilePictureURL: String
+    
+    static let createdAtKey: TimestampKey? = \User.createdAt
+    static let updatedAtKey: TimestampKey? = \User.updatedAt
+    var createdAt: Date?
+    var updatedAt: Date?
+    
+    init(Name: String, Username: String, ProfilePictureURL: String) {
         self.Name = Name
         self.Username = Username
+        self.ProfilePictureURL = ProfilePictureURL
     }
 }
 

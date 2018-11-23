@@ -32,11 +32,12 @@
       <button class="cn-button" id="cn-button">+</button>
       <div class="cn-wrapper" id="cn-wrapper">
         <ul>
-           <li #if(title == "User"){class="active"}><a href="/user"><span class="fas fa-cogs"></span></a></li>
-           <li><a href="#"><span class="fas fa-user-circle"></span></a></li>
-           <li #if(title == "Home"){class="active"}><a href="/"><span class="fas fa-home"></span></a></li>
-           <li><a href="#"><span class="fas fa-user-friends"></span></a></li>
-           <li><a href="#"><span class="fas fa-times"></span></a></li>
+          <li #if(title == "Profile"){class="active"}><a href="/profile"><span class="fas fa-user-circle fa-rotate-90"></span></a></li>
+          <li #if(title == "Home"){class="active"}><a href="/"><span class="fas fa-newspaper"></span></a></li>
+          <li><a href="#"><span class="fas fa-comments"></span></a></li>
+          <li><a href="#"><span class="fas fa-user-friends"></span></a></li>
+           <li #if(title == "Settings"){class="active"}><a href="/settings"><span class="fas fa-cogs fa-rotate-270"></span></a></li>
+
          </ul>
         </div>
       <div id="cn-overlay" class="cn-overlay"></div>
