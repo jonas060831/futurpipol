@@ -31,9 +31,8 @@ struct UsersController: RouteCollection {
 
         return try req.content.decode(User.self).flatMap(to: User.self) { user in
             
-            //random num
-            let num = randomNumber(min: 1, max: 4)
-            //assign a random userimage from db
+            
+            //assign a profile picture userimage from db
             user.ProfilePictureURL = String(format:"https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/Male/avatar4.png",num)
             
             //specify the cost higher number means longer hash & verify time
