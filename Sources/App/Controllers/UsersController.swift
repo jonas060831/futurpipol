@@ -34,7 +34,7 @@ struct UsersController: RouteCollection {
             //random num
             let num = randomNumber(min: 1, max: 4)
             //assign a random userimage from db
-            user.ProfilePictureURL = String(format:"https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/Male/avatar%i.png",num)
+            user.ProfilePictureURL = String(format:"https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/Male/avatar4.png",num)
             
             //specify the cost higher number means longer hash & verify time
             let hashedpw = try BCrypt.hash(user.Password, cost: 15)
@@ -80,7 +80,7 @@ struct UsersController: RouteCollection {
 extension User.Public: Parameter {}
 
 //random number
-public func randomNumber(min: UInt32, max: UInt32) -> Int {
-    let random_number = Int(arc4random_uniform(max) + min)
-    return random_number
-}
+//public func randomNumber(min: UInt32, max: UInt32) -> Int {
+//    let random_number = Int(arc4random_uniform(max) + min)
+//    return random_number
+//}
