@@ -1,6 +1,6 @@
 import Vapor
 import Fluent
-
+import Authentication
 
 //create a post
 //get all post
@@ -12,14 +12,23 @@ import Fluent
 struct PostsController: RouteCollection {
     func boot(router: Router) throws {
         
-        let postsRoutes = router.grouped("api", "posts")
+        let postsRoutes = router.grouped("api"  , "posts")
         //postsRoutes.post(use: createHandler) //1
-        postsRoutes.post(Post.self, use: createHandler)
+        //postsRoutes.post(Post.self, use: createHandler)
         postsRoutes.get(use: getAllHandler) //2
         postsRoutes.get(Post.parameter, use: getHandler) //3
-        postsRoutes.delete(Post.parameter, use: deleteHandler) //4
-        postsRoutes.get("search", use: searchHandler) //5
-        postsRoutes.get(Post.parameter, "user", use: getUserHandler) //6
+        //postsRoutes.delete(Post.parameter, use: deleteHandler) //4
+        //postsRoutes.put(Post.parameter, use: updateHandler)//5
+        postsRoutes.get("search", use: searchHandler) //6
+        postsRoutes.get(Post.parameter, "user", use: getUserHandler) //7
+        
+        
+        //protecting the iOS App
+        let tokenAuthMiddleware = User.tokenAuthMiddleware()
+        let tokenAuthGroup = postsRoutes.grouped(tokenAuthMiddleware)
+        tokenAuthGroup.post(use: createHandler)
+        tokenAuthGroup.delete(use: deleteHandler)
+        tokenAuthGroup.put(use: updateHandler)
     }
     
     //1
@@ -28,14 +37,25 @@ struct PostsController: RouteCollection {
 //            return post.save(on: req)
 //        }
 //   }
-    //As mentioned in Chapter 2, “Hello Vapor!”, Vapor provides helper functions for PUT, POST and PATCH routes for decoding incoming data. This helps remove a layer of nesting. To use this helper function, open AcronymsController.swift and replace createHandler(_:) with the following:
-    func createHandler(_ req: Request, post: Post) throws -> Future<Post> {
+    func createHandler(_ req: Request) throws -> Future<Post> {
         
+        return try req.content.decode(PostCreateData.self).flatMap(to: Post.self) { postCreateData in
+            
+            //get the authenticated user
+            let user = try req.requireAuthenticated(User.self)
+            
+            let post = try Post(Text: postCreateData.Text, Image: postCreateData.Image, Video: postCreateData.Video, Location: postCreateData.Location, Typeofpost: postCreateData.Typeofpost, creatorID: user.requireID() )
+            
+            //values needed to be unwrapped
+            let creatorInfo = User.Public(Name: (user.Name ) , Username: (user.Username ) , ProfilePictureURL: (user.ProfilePictureURL!))
+            post.creatorInfo = creatorInfo
             return post.save(on: req)
+        }
     }
     
     //2
     func getAllHandler(_ req: Request) -> Future<[Post]> {
+        
         return Post.query(on: req).all()
     }
     //3
@@ -56,12 +76,37 @@ struct PostsController: RouteCollection {
         }
         return  Post.query(on: req).filter(\.Text == searchTerm).all()
     }
+    func updateHandler(_ req: Request) throws -> Future<Post>{
+        return try flatMap(to: Post.self, req.parameters.next(Post.self), req.content.decode(PostCreateData.self)) { post, postcreateData in
+            
+            //updating the text and the type of post
+            post.Text = postcreateData.Text
+            post.Image = postcreateData.Image
+            post.Video = postcreateData.Video
+            post.Typeofpost = postcreateData.Typeofpost
+            post.creatorID = try req.requireAuthenticated(User.self).requireID()
+            return post.save(on: req)
+        }
+    }
     //6
     func getUserHandler(_ req: Request) throws -> Future<User> {
         return try req.parameters.next(Post.self).flatMap(to: User.self) { post in
-            post.user.get(on: req)
+            post.creator.get(on: req)
         }
     }
 }
+struct PostContent: Encodable {
 
+    let posts: [Post]?
 
+    let users: [User.Public]?
+}
+
+struct PostCreateData: Content {
+   // Text: String?, Image: String?, Video: String?, Location: String?, Typeofpost: String, creatorID: User.ID
+    let Text: String?
+    let Image: String?
+    let Video: String?
+    let Location: String?
+    let Typeofpost: String
+}

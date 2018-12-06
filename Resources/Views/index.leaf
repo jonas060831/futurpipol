@@ -20,7 +20,8 @@
                   <a href="/profile">
                   <span class="usersName" style="font-size:14px;font-weight:50">
                     <img class="profileImage" align="middle" src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg"/>
-                    John Doe Q.</span>
+                    John Doe Q.
+                  </span>
                   </a>
                 </th>
               </table>
@@ -49,12 +50,12 @@
                       </table>
                     </a>
                   </li>
-                  <li #if(title == "Groups"){class="active"}>
-                    <a href="#">
+                  <li #if(title == "Followers"){class="active"}>
+                    <a href="/followers">
                       <table class="nav-links-text">
                         <tr>
-                          <td><i class="fas fa-users"></i></td>
-                          <td>Groups</td>
+                          <td><i class="fas fa-user-friends"></i></td>
+                          <td>Followers</td>
                         </tr>
                       </table>
                     </a>
@@ -69,7 +70,7 @@
                       </table>
                     </a>
                   </li>
-                  <li>
+                  <li style="margin-top: 250px;">
                     <a href="#">
                       <table class="nav-links-text">
                         <tr>
@@ -82,14 +83,13 @@
                 </ul>
               </div>
             </div>
-            <div class="global-div-footer" style="border-bottom-left-radius:5px">
-                <!-- footer -->
+            <div class="global-div-footer" style="border-bottom-left-radius:5px;padding:10px">
             </div>
         </div>
     </div>
     <div class="container-postSection" style="">
         <div class="global-div" style="">
-          <form action="action.php" method="post" >
+          <form action="" method="post" >
             <div class="global-div-header" style="padding:15px">
               <table class="postForm-header" width="100%">
                   <th width="1%">
@@ -104,16 +104,11 @@
               </table>
             </div>
             <div class="global-div-body">
-              <div class="postForm-body">
                   <div class="postForm-input-container">
-
-                    <a href="/profile">
-                    <img class="postText-image" style="position:relative;cursor:pointer" alt="Jon Doe Q." src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg" />
-                    </a>
-                    <input class="postForm-Text" type="text" name="Text" placeholder="Thoughts..">
+                      <a href="/profile"><img style="cursor:pointer" src="https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/Resized/9006f78068d8413e7af509f079b6d23d.1540743861.98ee908264de76ff5b4243b4a0e57b8a.jpg"/></a>
+                      <input class="postForm-Text" type="text" name="Text" placeholder="Thoughts..">
                   </div>
-              </div>
-              <hr style="margin-top:10px;margin-top:10px;margin-bottom:10px;" noshade>
+              <hr style="margin-top:10px;margin-top:10px;margin-bottom:10px" noshade >
             </div>
             <div class="global-div-footer" style="" >
               <table class="postForm-footer" width="100%">
@@ -133,11 +128,20 @@
                       <div class="select-style">
                         <select class="media" name="Typeofpost">
                           <option class="opt" value="Public" selected>Public</option>
-                          <option class="opt" value="Friends Only" disabled>Friends Only</option>
-                          <option class="opt" value="Only Me" disabled>Only Me</option>
-                          <option class="opt" value="Customize" disabled>Customize</option>
+                          <option class="opt" value="Friends Only" >Friends Only</option>
+                          <option class="opt" value="Only Me" >Only Me</option>
+                          <option class="opt" value="Customize" >Customize</option>
                         </select>
                       </div>
+                      #if(users){
+                        <select class="media" name="creator">
+                          #for(user in users) {
+                            <option value="#(user.id)">#(user.Name)</option>
+                          }
+                        </select>
+                      }else{
+                        no user yet
+                      }
                     </td>
                   </tr>
               </table>
@@ -147,7 +151,7 @@
     </div>
     <div class="container-feedSection">
 
-        <!-- global post will be shown here -->
+        <!-- public post,friends only post, only me and customize post will be shown here -->
         <!-- TODO
         1. show 100 post in a page
         2. ability to show more post once button is click
@@ -158,30 +162,97 @@
 
     #if(posts){
           #for(post in posts){
-          <div class="global-div"style="background:none">
-            <div class="global-div-header" style="background-color:rgba(255, 255, 255, 0.2);padding:20px;">
-                picture,name,useragent,timestamp, typeof post and settings shows here<br>
-            </div>
-            <div class="global-div-body" style="background-color:rgba(255, 255, 255, 0.2);border-radius:0px;border:1px solid white;">
-              #(post.Text)
-              #(post.Video)
-              #(post.Image)
-              #(post.Images)
-              <br>
-              whereas public friends or cuztomize post will be shown to you by peole
+          <div class="global-div"style="background:none;padding-bottom:5px;">
+            <div class="global-div-header" style="background-color:rgba(255, 255, 255, 0.2);padding:5px;border-top-left-radius:2px;border-top-right-radius:2px;">
+              <!-- profilepic, name, timestamp,useragent, typeof post and settings shows here -->
+              #if(users){
+                #for(user in users){
 
+                  <table class="info-holder" style="border-collapse: collapse;width:100%;">
+                    <tr>
+                        <th rowspan="2" align="left" style="width:38px;padding-bottom:10px"><img src="#(user.ProfilePictureURL)" style="width:35px;border:2px solid rgb(24, 124, 124);border-radius: 50%;height:auto;"/></th>
+                        <th align="left" style="padding-top:10px;color: rgb(24, 124, 124);text-shadow: 0px 0px 10px #060606;">#(user.Name)</th>
+                        <th rowspan="2" align="right" style="padding-bottom:25px">
+
+                          #if(post.Typeofpost == "Public"){
+                              <i class="fas fa-globe-asia" style="cursor:pointer"></i>
+                          }
+                          #if(post.Typeofpost == "Friends Only"){
+                              <i class="fas fa-user-friends" style="cursor:pointer"></i>
+                          }
+                          #if(post.Typeofpost == "Only Me"){
+                              <i class="fas fa-user" style="cursor:pointer"></i>
+                          }
+                          #if(post.Typeofpost == "Customize"){
+                              <i class="fas fa-users-cog" style="cursor:pointer"></i>
+                          }
+                        </th>
+                    </tr>
+                    <tr>
+                        <td align="left" style="padding-bottom:20px;font-size:7px">#(post.createdAt)</td>
+                    </tr>
+                 </table>
+                }
+              }else {
+                <h1>no creator of post yet</h1>
+              }
+            </div>
+            <div class="global-div-body" style="background-color:rgba(255, 255, 255, 0.2);border-radius:0px;">
+              <table style="width:100%">
+                <thead align="left">
+                  <!-- data.content.1 -->
+                    <span style="padding-left:15px;font-size: 22px;">#(post.Text)</span>
+                </thead>
+                <tbody>
+
+                  <div class="body-post-container" style="width:100%;overflow:hidden">
+
+                  <!-- data.content.2 -->
+                  #if(post.Image){
+                    <img src="#(post.Image)" alt="" style="width:100%;">
+                  }
+                  <!-- data.content.3 -->
+                  #(post.Images)
+                  <!-- data.content.4 -->
+                  #if(post.Video){
+                    <video width="100%" controls>
+                        <source src="#(post.Video)" type="video/mp4">
+                    </video>
+                  }
+                  </div>
+                </tbody>
+              </table>
+              <!-- star and comment -->
+              <table style="width:100%;">
+                  <th style="padding:5px;"width="98%">&nbsp;</th>
+                  <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-star">1</i></th>
+                  <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-comment-dots">1</i></th>
+              </table>
 
             </div>
-            <div class="global-div-footer" style="background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius: 0px;">
-              comment box and button will show here
+            <div class="global-div-footer" style="height:auto;background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius:2px;border-bottom-right-radius:2px;margin-top:1px">
+
+                <!-- TODO:make a socket.io listener event -->
+
+                <div class="comment-form" style="padding:10px;">
+                  <form class="" action="index.html" method="post">
+                    <table width="99%">
+                      <tr>
+                        <td style="padding-bottom: 10px;"><input type="text" name="comment" placeholder="write comment here..." ></td>
+                        <td align="left" style="width:1%"><input type="submit" name="" value=""></td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
             </div>
+
           </div>
         }
     }else {
       <h1>No post yet!</h1>
     }
-
     </div>
+
     <div class="container-extraSection">
       <div class="global-div">
         <div class="global-div-header" style="border-top-right-radius:5px;">
@@ -198,7 +269,7 @@
         </div>
       </div>
     </div>
-
   </div>
+  <br><br><br><br><br><br><br><br><br>
 }
 #embed("base")

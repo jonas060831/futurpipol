@@ -37,7 +37,6 @@
           <li><a href="#"><span class="fas fa-comments"></span></a></li>
           <li><a href="#"><span class="fas fa-user-friends"></span></a></li>
            <li #if(title == "Settings"){class="active"}><a href="/settings"><span class="fas fa-cogs fa-rotate-270"></span></a></li>
-
          </ul>
         </div>
       <div id="cn-overlay" class="cn-overlay"></div>

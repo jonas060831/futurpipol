@@ -9,7 +9,6 @@
 }
 a {
   text-decoration: none;
-  font-weight: 100;
 }
 a:link {
     color: white;
@@ -33,7 +32,6 @@ a:active {
       background-image: radial-gradient(circle at 50%, #075757, #110f0f 55%);
       position: relative;
 }
-
 /* font */
 
 @font-face {
@@ -318,29 +316,19 @@ input[type='checkbox'].toggle {
   height: auto;
   border-radius: 50%;
 }
-
-.postText-image {
+.postForm-input-container img {
+  vertical-align: middle;
   width: 50px;
   height: auto;
   border-radius: 50%;
-  margin-left: 10px;
-}
-
-.postForm-Text {
-  width: 100%;
-  background: none;
-  outline:none;
-  border-bottom: 2px solid;
-  border-top: none;border-left: none;border-right: none;
-  border-color: white;
 }
 .postForm-input-container {
-  position: relative;
-  margin-top:15px;
-
+  padding-top: 35px;
 }
+
 .postForm-input-container input[type=text]{
-  width: 100%;
+  width: 85%;
+  height: 20px;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-top: none;
@@ -349,16 +337,14 @@ input[type='checkbox'].toggle {
   border-bottom: none;
   font-size: 14px;
   background: none;
+  outline:none;
   background-repeat: no-repeat;
-  padding: 0px 0px 6px 60px;
   color: white;
 }
 .postForm-Text::placeholder {
   text-shadow: none;
 }
 .postForm-input-container img {
-  position: absolute;
-  top:25px;
   padding:0px 5px 0px 5px;
   color:rgb(180, 182, 180);
 }
@@ -368,8 +354,6 @@ input[type='checkbox'].toggle {
   background: none;
   padding-left: 10px;
 }
-
-
 .postForm-button {
   width: 50px;
   height: 50px;
@@ -390,10 +374,29 @@ input[type='checkbox'].toggle {
 .media i:hover , .media select:hover {
   opacity: 0.7;
 }
-
-
-
-
+.comment-form input[type=text] {
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px solid #ccc;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 14px;
+  background: none;
+  outline:none;
+  background-repeat: no-repeat;
+  color: white;
+}
+.comment-form input[type=submit] {
+  height: 25px;
+  width: 25px;
+  margin-top: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgba(36, 173, 173, 0.58);
+  border-color: rgba(96, 213, 219, 0.9);
+  border-style:solid;text-shadow: 2px 3px 8px #009da6;
+}
 .container {
   /* occupy the whole screen width when using mobile and tablet */
   width: 100%;
@@ -478,6 +481,18 @@ input[type='checkbox'].toggle {
 
   }
   .user-nav li.active a {
+    text-shadow: 1px 1px 10px #fff;
+    font-weight: bold;
+  }
+  .log-nav ul{
+    width: 100%;
+    padding: 5px;
+  }
+  .log-nav li a:hover:not(.active) {
+    text-shadow: 1px 1px 10px #fff;
+
+  }
+  .log-nav li.active a {
     text-shadow: 1px 1px 10px #fff;
     font-weight: bold;
   }
