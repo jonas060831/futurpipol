@@ -14,6 +14,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     var middlewares = MiddlewareConfig() // Create _empty_ middleware config
     middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
     middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
+    middlewares.use(SessionsMiddleware.self)// to use session
     services.register(middlewares)
 
     // Configure a database
@@ -70,6 +71,8 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     //prefer leaf
     config.prefer(LeafRenderer.self, for: ViewRenderer.self)
+    ///session middleware
+    config.prefer(MemoryKeyedCache.self, for: KeyedCache.self)
     
     //User.Public
     User.Public.defaultDatabase = .psql

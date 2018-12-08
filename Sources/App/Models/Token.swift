@@ -19,7 +19,16 @@ final class Token: Codable {
 
 extension Token: PostgreSQLUUIDModel {}
 extension Token: Content {}
-extension Token: Migration {}
+
+
+extension Token: Migration {
+    static func prepare(on connection: PostgreSQLConnection) -> Future<Void> {
+        return Database.create(self, on: connection) { builder in
+            try addProperties(to: builder)
+            builder.reference(from: \.userID, to: \User.id)
+        }
+    }
+}
 
 extension Token {
     var user: Parent<Token, User> {

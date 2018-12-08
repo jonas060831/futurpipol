@@ -23,20 +23,23 @@ struct PostsController: RouteCollection {
         postsRoutes.get(Post.parameter, "user", use: getUserHandler) //7
         
         
-        //protecting the iOS App
+        
+        //basic authentication
+        //let basicAuthMiddleware = User.basicAuthMiddleware(using: BCryptDigest())
+        //let guardAuthMiddleware = User.guardAuthMiddleware()
+        //let protected = postsRoutes.grouped(basicAuthMiddleware, guardAuthMiddleware)
+        
+        
+        //using token on every http req
         let tokenAuthMiddleware = User.tokenAuthMiddleware()
-        let tokenAuthGroup = postsRoutes.grouped(tokenAuthMiddleware)
+        let guardAuthMiddleware = User.guardAuthMiddleware()
+        
+        let tokenAuthGroup = postsRoutes.grouped(tokenAuthMiddleware,guardAuthMiddleware)
         tokenAuthGroup.post(use: createHandler)
         tokenAuthGroup.delete(use: deleteHandler)
         tokenAuthGroup.put(use: updateHandler)
     }
-    
-    //1
-//   func createHandler(_ req: Request) throws -> Future<Post> {
-//        return try req.content.decode(Post.self).flatMap(to: Post.self) { post in
-//            return post.save(on: req)
-//        }
-//   }
+
     func createHandler(_ req: Request) throws -> Future<Post> {
         
         return try req.content.decode(PostCreateData.self).flatMap(to: Post.self) { postCreateData in
@@ -46,8 +49,9 @@ struct PostsController: RouteCollection {
             
             let post = try Post(Text: postCreateData.Text, Image: postCreateData.Image, Video: postCreateData.Video, Location: postCreateData.Location, Typeofpost: postCreateData.Typeofpost, creatorID: user.requireID() )
             
-            //values needed to be unwrapped
-            let creatorInfo = User.Public(Name: (user.Name ) , Username: (user.Username ) , ProfilePictureURL: (user.ProfilePictureURL!))
+           //computed authenticated user autofill
+            let creatorInfo = User.Public(id: user.id, Name: user.Name, Username: user.Username, ProfilePictureURL: user.ProfilePictureURL!)
+            
             post.creatorInfo = creatorInfo
             return post.save(on: req)
         }
@@ -83,15 +87,22 @@ struct PostsController: RouteCollection {
             post.Text = postcreateData.Text
             post.Image = postcreateData.Image
             post.Video = postcreateData.Video
-            post.Typeofpost = postcreateData.Typeofpost
-            post.creatorID = try req.requireAuthenticated(User.self).requireID()
+            
+            //can never update what type of post they sent opt 1 is to delete the post
+            //post.Typeofpost = postcreateData.Typeofpost
+            
+            //get the authenticated user
+            let user = try req.requireAuthenticated(User.self)
+            
+            post.creatorID = try user.requireID()
+            
             return post.save(on: req)
         }
     }
     //6
-    func getUserHandler(_ req: Request) throws -> Future<User> {
-        return try req.parameters.next(Post.self).flatMap(to: User.self) { post in
-            post.creator.get(on: req)
+    func getUserHandler(_ req: Request) throws -> Future<User.Public> {
+        return try req.parameters.next(Post.self).flatMap(to: User.Public.self) { post in
+            post.creator.get(on: req).convertToPublic()
         }
     }
 }
@@ -103,7 +114,6 @@ struct PostContent: Encodable {
 }
 
 struct PostCreateData: Content {
-   // Text: String?, Image: String?, Video: String?, Location: String?, Typeofpost: String, creatorID: User.ID
     let Text: String?
     let Image: String?
     let Video: String?

@@ -15,21 +15,27 @@ struct UsersController: RouteCollection {
         usersRoute.get("search", use: searchHandler)
         usersRoute.get(User.parameter, "posts", use: getPostsHandler)
         
-        
+        //basic auth
         let basicAuthMiddleware = User.basicAuthMiddleware(using: BCrypt)
         let basicAuthGroup = usersRoute.grouped(basicAuthMiddleware)
         basicAuthGroup.post("login", use: loginHandler)
+        
+        //bearer auto
+        //let tokenAuthMiddleware = User.tokenAuthMiddleware()
+        //let guardAuthMiddleware = User.guardAuthMiddleware()
+        //let tokenAuthGroup = usersRoute.grouped(tokenAuthMiddleware,guardAuthMiddleware)
+
     }
 
     
-    func createHandler(_ req: Request, user: User) throws -> Future<User> {
+    func createHandler(_ req: Request, user: User) throws -> Future<User.Public> {
         
         //TODO:
         //USER can create an account by default there will be a profile picture provided that can be change later On
         //MUST PROVIDE NAME, PASSWORD AND EMAIL
         //then other info can be provided later on
 
-        return try req.content.decode(User.self).flatMap(to: User.self) { user in
+        return try req.content.decode(User.self).flatMap(to: User.Public.self) { user in
             
             
             //assign a profile picture userimage from db
@@ -39,15 +45,16 @@ struct UsersController: RouteCollection {
             let hashedpw = try BCrypt.hash(user.Password, cost: 15)
             user.Password = hashedpw
             
-            return user.save(on: req)
+            return user.save(on: req).convertToPublic()
         }
     }
     func getAllHandler(_ req: Request) throws -> Future<[User.Public]> {
         
-        return User.Public.query(on: req).all()
+        return User.query(on: req).decode(data: User.Public.self).all()
     }
     func getHandler(_ req: Request) throws -> Future<User.Public> {
-        return try req.parameters.next(User.Public.self)
+        
+        return try req.parameters.next(User.self).convertToPublic()
     }
     func deleteHandler(_ req: Request) throws -> Future<HTTPStatus> {
         

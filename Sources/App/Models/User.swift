@@ -34,10 +34,11 @@ final class User: Codable {
         var Username: String
         var ProfilePictureURL: String
         
-        init(Name: String, Username: String, ProfilePictureURL: String){
-            self.ProfilePictureURL = ProfilePictureURL
+        init(id: UUID?, Name: String, Username: String, ProfilePictureURL: String){
+            self.id = id
             self.Name = Name
             self.Username = Username
+            self.ProfilePictureURL = ProfilePictureURL
         }
     }
 }
@@ -47,7 +48,15 @@ extension User: PostgreSQLUUIDModel {}
 
 extension User: Content {}
 
-extension User: Migration {}
+//Unique username
+extension User: Migration {
+    static func prepare(on connection: PostgreSQLConnection) -> Future<Void>{
+        return Database.create(self, on: connection){ builder in
+            try addProperties(to: builder)
+            builder.unique(on: \.Username)
+        }
+    }
+}
 
 extension User: Parameter {}
 
@@ -71,4 +80,21 @@ extension User: BasicAuthenticatable {
 
 extension User: TokenAuthenticatable {
     typealias TokenType = Token
+}
+
+extension User: PasswordAuthenticatable {}
+extension User: SessionAuthenticatable {}
+
+extension User {
+    func convertToPublic() -> User.Public {
+        return User.Public(id: id, Name: Name, Username: Username, ProfilePictureURL: ProfilePictureURL!)
+    }
+}
+
+extension Future where T: User {
+    func convertToPublic() -> Future<User.Public> {
+        return self.map(to: User.Public.self) { user in
+            return user.convertToPublic()
+        }
+    }
 }

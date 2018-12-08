@@ -1,12 +1,19 @@
 #set("content"){
 
+
+    #if(loginError){
+      <div class="errormessage" style="background-color:red; padding:20px;border-radius:5px;color:#fff;text-align: center;">
+      <bold style="font-size: 2.5em">User Authentication error!</bold><br>Either your username or password was invalid
+      </div>
+    }
+
   <div class="login-form" >
       <!-- header -->
       <div class="login-form-header">
         <table width="100%">
           <tr>
             <th style="text-align:left">
-              <i class="fas fa-user-astronaut fa-lg" style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;visibility:hidden"></i>
+              <h1>#(title)</h1>
             </th>
             <th style="text-align:center;" width="25px">
 
@@ -25,9 +32,9 @@
         </table>
       </div>
       <!-- body -->
-      <form action="/action_page.php">
+      <form method="post">
         <input type="text" id="username" name="Username" placeholder="email or mobile number">
-        <input type="password" id="password" name="Password" placeholder="•••••••••••">
+        <input type="password" id="password" name="Password" placeholder="password">
         <input type="submit" value="">
       </form>
       <!-- footer -->
@@ -44,6 +51,5 @@
         </table>
       </div>
     </div>
-
 }
 #embed("base")
