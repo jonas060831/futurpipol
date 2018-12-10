@@ -316,12 +316,7 @@ input[type='checkbox'].toggle {
   height: auto;
   border-radius: 50%;
 }
-.postForm-input-container img {
-  vertical-align: middle;
-  width: 50px;
-  height: auto;
-  border-radius: 50%;
-}
+
 .postForm-input-container {
   padding-top: 35px;
 }
@@ -345,8 +340,12 @@ input[type='checkbox'].toggle {
   text-shadow: none;
 }
 .postForm-input-container img {
-  padding:0px 5px 0px 5px;
   color:rgb(180, 182, 180);
+  vertical-align: middle;
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+  border:2px solid rgb(24, 124, 124);
 }
 .container-postSection .global-div-footer {
   margin: 0px auto;

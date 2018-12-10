@@ -10,18 +10,22 @@ struct WebsiteController: RouteCollection {
         
 
         let authSessionsRoutes = router.grouped(User.authSessionsMiddleware())
-        authSessionsRoutes.get("profile", use: profileHandler)
-        authSessionsRoutes.get("settings", use: settingsHandler)
+        
         
         //redirect UNAUTHENTICATED users to login page
         let protectedRoutes = authSessionsRoutes.grouped(RedirectMiddleware<User>.login())
         protectedRoutes.get(use: indexHandler)
         protectedRoutes.post(use: createPostHandler)
+        protectedRoutes.get("profile", use: profileHandler)
+        protectedRoutes.get("settings", use: settingsHandler)
         
-        //redirect AUTHENTICATED users to home page
+        //redirect AUTHENTICATED users to home page when trying to visit login page
         let protectedRoutes2 = authSessionsRoutes.grouped(InverseRedirectMiddleware<User>.home())
         protectedRoutes2.get("login", use: loginHandler)
         protectedRoutes2.post(LoginPostData.self, at: "login", use: loginPostHandler)
+        
+        //logout the user
+        router.post("logout", use: logoutHandler)
         
     }
     
@@ -61,14 +65,14 @@ struct WebsiteController: RouteCollection {
         }
     }
     func profileHandler(_ req: Request) throws -> Future<View> {
-        return User.query(on: req).all().flatMap(to: View.self) { users in
-            let userData = users.isEmpty ? nil : users
+        
+            let userData = try req.requireAuthenticated(User.self)
             let context = ProfileContext(
                 title: "Profile",
-                users: userData
+                user: userData
             )
             return try req.view().render("profile", context)
-        }
+        
     }
     func settingsHandler(_ req: Request) throws -> Future<View> {
         let context = settingsContext(title: "Settings")
@@ -97,6 +101,14 @@ struct WebsiteController: RouteCollection {
             return req.redirect(to: "/")
         }
     }
+    func logoutHandler(_ req: Request) throws -> Response {
+        
+        //destroy the session
+        try req.unauthenticateSession(User.self)
+        try req.releaseCachedConnections()
+        try req.destroySession()
+        return req.redirect(to: "/login")
+    }
 }
 
 struct IndexContext: Encodable {
@@ -116,7 +128,7 @@ struct PostData: Content {
 
 struct ProfileContext: Encodable {
     let title: String
-    let users: [User]?
+    let user: User
 }
 
 struct settingsContext: Encodable {

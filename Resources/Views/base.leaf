@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="./styles/css/circle-nav/normalize.css">
     <link rel="stylesheet" href="./styles/css/circle-nav/nav-design.css">
     <link rel="stylesheet" href="./styles/css/preloader/global-preloader.css">
-    <script src="./styles/js/modernizr-2.6.2.min.js"></script>
+    <script src="./styles/js/modernizrandpollyfills/modernizr-2.6.2.min.js"></script>
+    <script type="text/javascript" src="./styles/js/master.js"></script>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
@@ -28,24 +29,28 @@
       <i class="fas fa-redo-alt fa-spin" style="font-size:48px;color:#06f2ff"></i>
     </div>
     <!-- circle navigation bar -->
-    #if(title != "Log In"){
-      <button class="cn-button" id="cn-button">+</button>
-      <div class="cn-wrapper" id="cn-wrapper">
-        <ul>
-          <li #if(title == "Profile"){class="active"}><a href="/profile"><span class="fas fa-user-circle fa-rotate-90"></span></a></li>
-          <li #if(title == "Home"){class="active"}><a href="/"><span class="fas fa-newspaper"></span></a></li>
-          <li><a href="#"><span class="fas fa-comments"></span></a></li>
-          <li><a href="#"><span class="fas fa-user-friends"></span></a></li>
-           <li #if(title == "Settings"){class="active"}><a href="/settings"><span class="fas fa-cogs fa-rotate-270"></span></a></li>
-         </ul>
-        </div>
-      <div id="cn-overlay" class="cn-overlay"></div>
-    }
 
-    <!-- nav bar -->
-    <script type="text/javascript" src="./styles/js/polyfills.js"></script>
-    <script type="text/javascript" src="./styles/js/nav.js"></script>
-    <script type="text/javascript" src="./styles/js/global-preloader.js"></script>
+      #if(title == "Log In"){
+
+      }else {
+        <button class="cn-button" id="cn-button">+</button>
+        <div class="cn-wrapper" id="cn-wrapper">
+          <ul>
+            <li #if(title == "Profile"){class="active"}><a href="/profile"><span class="fas fa-user-circle fa-rotate-90"></span></a></li>
+            <li #if(title == "Home"){class="active"}><a href="/"><span class="fas fa-newspaper"></span></a></li>
+            <li><a href="#"><span class="fas fa-comments"></span></a></li>
+            <li><a href="#"><span class="fas fa-user-friends"></span></a></li>
+             <li #if(title == "Settings"){class="active"}><a href="/settings"><span class="fas fa-cogs fa-rotate-270"></span></a></li>
+           </ul>
+          </div>
+        <div id="cn-overlay" class="cn-overlay"></div>
+
+
+        <!-- nav bar -->
+        <script type="text/javascript" src="./styles/js/modernizrandpollyfills/polyfills.js"></script>
+        <script type="text/javascript" src="./styles/js/navigation/nav.js"></script>
+      }
+      <script type="text/javascript" src="./styles/js/preloader/global-preloader.js"></script>
     #get(content)
   </body>
 </html>

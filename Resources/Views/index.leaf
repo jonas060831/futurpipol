@@ -19,7 +19,7 @@
                 <th>
                   <a href="/profile">
                   <span class="usersName" style="font-size:14px;font-weight:50">
-                    <img class="profileImage" align="middle" src="#(user.ProfilePictureURL)"/>
+                    <img class="profileImage" align="middle" src="#(user.ProfilePictureURL)" style="border:2px solid rgb(24, 124, 124);border-radius: 50%;"/>
                     #(user.Name)
                   </span>
                   </a>
@@ -71,14 +71,20 @@
                     </a>
                   </li>
                   <li style="margin-top: 250px;">
-                    <a href="#">
+                    <form class="logOutHandler" action="/logout" method="post">
+                      <button type="submit" style="background:none;color:white;border:0;">
                       <table class="nav-links-text">
                         <tr>
-                          <td><i class="fas fa-times fa-lg"></i></td>
-                          <td>Exit</td>
+
+                              <td>
+                                <i class="fas fa-times"></i>
+                              </td>
+                              <td>Exit</td>
+
                         </tr>
+                        </button>
                       </table>
-                    </a>
+                    </form>
                   </li>
                 </ul>
               </div>
