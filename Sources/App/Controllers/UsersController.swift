@@ -2,8 +2,6 @@ import Vapor
 import Fluent
 import Foundation
 import Authentication
-import Random
-
 
 struct UsersController: RouteCollection {
     
@@ -39,10 +37,9 @@ struct UsersController: RouteCollection {
         return try req.content.decode(User.self).flatMap(to: User.Public.self) { user in
             
             //assign a profile picture userimage from db
+
             
-            let randomNumber = arc4random_uniform(4 - 1) + 1
-            
-            user.ProfilePictureURL = String(format: "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/Male/avatar%d.png", randomNumber)
+            user.ProfilePictureURL = String(format: "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/Male/avatar%d.png", SimpleRandom.random(1...5))
             
             //specify the cost higher number means longer hash & verify time
             let hashedpw = try BCrypt.hash(user.Password, cost: 15)
@@ -87,11 +84,4 @@ struct UsersController: RouteCollection {
 }
 //User.Public
 extension User.Public: Parameter {}
-
-//random number
-//public func randomNumber(min: UInt32, max: UInt32) -> Int {
-//    let random_number = Int(arc4random_uniform(max) + min)
-//    return random_number
-//}
-
 
