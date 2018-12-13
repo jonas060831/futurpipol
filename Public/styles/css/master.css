@@ -391,8 +391,8 @@ input[type='checkbox'].toggle {
 }
 
 /* cellspacing */
-.comment-form{ border-collapse: separate; border-spacing: 4px; } /* cellspacing="5" */
-.comment-form{ border-collapse: collapse; border-spacing: 0; }
+.comment-form input[type=text]{ border-collapse: separate; border-spacing: 4px; } /* cellspacing="5" */
+.comment-form input[type=text]{ border-collapse: collapse; border-spacing: 0; }
 .comment-form th, td { padding: 3px; }
 
 .comment-form input[type=submit] {
