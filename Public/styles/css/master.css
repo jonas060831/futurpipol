@@ -366,10 +366,6 @@ input[type='checkbox'].toggle {
   background-color: rgba(16, 254, 4, 0.58);
   border-color: white;
 }
-/* cellspacing */
-.postForm-footer{ border-collapse: separate; border-spacing: 4px; } /* cellspacing="5" */
-.postForm-footer{ border-collapse: collapse; border-spacing: 0; }
-.postForm-footer th, td { padding: 3px; }
 .media {
   cursor:pointer;
 }
@@ -379,31 +375,30 @@ input[type='checkbox'].toggle {
 .comment-form input[type=text] {
   box-sizing: border-box;
   width: 100%;
-  border: 2px solid #ccc;
-  border-top: none;
-  border-left: none;
-  border-right: none;
   font-size: 14px;
   background: none;
   outline:none;
   background-repeat: no-repeat;
   color: white;
+  border:none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 0;
+  -webkit-appearance: none;
 }
 
-/* cellspacing */
-.comment-form input[type=text]{ border-collapse: separate; border-spacing: 4px; } /* cellspacing="5" */
-.comment-form input[type=text]{ border-collapse: collapse; border-spacing: 0; }
-.comment-form th, td { padding: 3px; }
+
 
 .comment-form input[type=submit] {
   height: 25px;
   width: 25px;
   margin-top: 10px;
   border-radius: 50%;
+  border: none;
+
   cursor: pointer;
   background-color: rgba(36, 173, 173, 0.58);
   border-color: rgba(96, 213, 219, 0.9);
-  border-style:solid;text-shadow: 2px 3px 8px #009da6;
+  text-shadow: 2px 3px 8px #009da6;
 }
 .container {
   /* occupy the whole screen width when using mobile and tablet */
