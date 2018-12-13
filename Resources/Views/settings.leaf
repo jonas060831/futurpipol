@@ -10,24 +10,41 @@
           </div>
         </form>
     </div>
-    <div class="container-userSection">
+    <!-- <div class="container-userSection">
         <div class="global-div">
 
-            <div class="global-div-header" style="padding:15px 0px 10px 12px;border-top-left-radius:5px;">
-              <table>
-                <th>
-                  <a href="/profile">
-                  <span class="usersName" style="font-size:14px;font-weight:50">
-                    <img class="profileImage" align="middle" src="#(user.ProfilePictureURL)" style="border:2px solid rgb(24, 124, 124);border-radius: 50%;"/>
-                    #(user.Name)
-                  </span>
-                  </a>
-                </th>
-              </table>
+            <div class="global-div-header" style="padding:15px 0px 10px 12px;">
             </div>
 
             <div class="global-div-body" style="padding:10px;height:400px;">
-              <div class="user-nav">
+
+            </div>
+            <div class="global-div-footer" style="padding:10px">
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="container-postSection" style="">
+        <div class="global-div" style="">
+            <div class="global-div-header">
+
+            </div>
+            <div class="global-div-body">
+
+            </div>
+            <div class="global-div-footer">
+
+            </div>
+        </div>
+    </div> -->
+    <div class="container-feedSection">
+        <div class="global-div" style="">
+              <div class="global-div-header" style="padding:10px">
+                <span class="usersName" style="font-size:14px;font-weight:50">
+                  <img class="profileImage" align="middle" src="#(user.ProfilePictureURL)" style="border:2px solid rgb(24, 124, 124);border-radius: 50%;"/>
+                  #(user.Name)
+                </span>
+              </div>
+              <div class="global-div-body" style="padding:10px">
                 <ul>
                   <form class="logOutHandler" action="/logout" method="post">
                     <button type="submit" style="color:white;border:0;background:none;">
@@ -43,37 +60,9 @@
                   </form>
                 </ul>
               </div>
-            </div>
-            <div class="global-div-footer" style="border-bottom-left-radius:5px;padding:10px">
-            </div>
-        </div>
-    </div>
-    <div class="container-postSection" style="">
-        <div class="global-div" style="">
-            <div class="global-div-header">
-
-            </div>
-            <div class="global-div-body">
-
-            </div>
-            <div class="global-div-footer">
-
-            </div>
-        </div>
-    </div>
-    <div class="container-feedSection">
-        <div class="global-div" style="">
-          <div class="global-div" style="">
-              <div class="global-div-header">
-
-              </div>
-              <div class="global-div-body">
-
-              </div>
               <div class="global-div-footer">
 
               </div>
-          </div>
         </div>
     </div>
 

@@ -30,7 +30,6 @@ struct WebsiteController: RouteCollection {
     }
     
     func indexHandler(_ req: Request) throws -> Future<View> {
-        print(SimpleRandom.random(1...5))
             return Post.query(on: req).sort(\.id, .descending).all().flatMap(to: View.self) { posts in
                 
                 //get the authenticated user

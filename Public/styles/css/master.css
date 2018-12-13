@@ -366,7 +366,6 @@ input[type='checkbox'].toggle {
   background-color: rgba(16, 254, 4, 0.58);
   border-color: white;
 }
-
 /* cellspacing */
 .postForm-footer{ border-collapse: separate; border-spacing: 4px; } /* cellspacing="5" */
 .postForm-footer{ border-collapse: collapse; border-spacing: 0; }
@@ -390,6 +389,12 @@ input[type='checkbox'].toggle {
   background-repeat: no-repeat;
   color: white;
 }
+
+/* cellspacing */
+.comment-form{ border-collapse: separate; border-spacing: 4px; } /* cellspacing="5" */
+.comment-form{ border-collapse: collapse; border-spacing: 0; }
+.comment-form th, td { padding: 3px; }
+
 .comment-form input[type=submit] {
   height: 25px;
   width: 25px;
@@ -409,6 +414,7 @@ input[type='checkbox'].toggle {
   grid-gap:5px;
   grid-template-areas:
   "container-searchSection"
+  "container-userSection"
   "container-postSection"
   "container-feedSection"
   "container-extraSection"
