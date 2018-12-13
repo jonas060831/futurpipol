@@ -33,12 +33,13 @@ struct UsersController: RouteCollection {
         //USER can create an account by default there will be a profile picture provided that can be change later On
         //MUST PROVIDE NAME, PASSWORD AND EMAIL
         //then other info can be provided later on
-        let rand = SimpleRandom.random(1...5)
+        
         
 
         return try req.content.decode(User.self).flatMap(to: User.Public.self) { user in
             
             //assign a profile picture userimage from db
+            let rand = SimpleRandom.random(1...5)
             let pfURL = String(format: "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/%@/avatar%d.png", user.Gender,rand)
             
             user.ProfilePictureURL = pfURL
