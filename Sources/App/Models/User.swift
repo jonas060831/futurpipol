@@ -9,7 +9,9 @@ final class User: Codable {
     var Name: String
     var Username: String
     var Password: String
+    var Gender: String
     var ProfilePictureURL: String?
+    
     
     var Posts: Post?
     
@@ -19,10 +21,11 @@ final class User: Codable {
     var updatedAt: Date?
     
     
-    init(Name: String, Username: String, Password: String, ProfilePictureURL: String) {
+    init(Name: String, Username: String, Password: String, Gender: String,ProfilePictureURL: String) {
         self.Name = Name
         self.Username = Username
         self.Password = Password
+        self.Gender = Gender
         self.ProfilePictureURL = ProfilePictureURL
     }
     

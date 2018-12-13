@@ -1,5 +1,6 @@
 #set("content"){
 
+
   #if(loginError){
     <div class="errormessage" style="background-color:red; padding:5px;color:#fff;text-align: center;margin:0px auto">
     <bold style="font-size: 1.5em">User Authentication error!:</bold>

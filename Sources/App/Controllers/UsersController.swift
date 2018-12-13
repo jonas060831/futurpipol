@@ -39,7 +39,7 @@ struct UsersController: RouteCollection {
             //assign a profile picture userimage from db
 
             
-            user.ProfilePictureURL = String(format: "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/Male/avatar%d.png", SimpleRandom.random(1...5))
+            user.ProfilePictureURL = String(format: "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/%@/avatar%d.png", user.Gender,SimpleRandom.random(1...5))
             
             //specify the cost higher number means longer hash & verify time
             let hashedpw = try BCrypt.hash(user.Password, cost: 15)

@@ -7,7 +7,7 @@
 
           <div class="search-container">
               <input type="text" name="search" placeholder="Search for..">
-              <i class="fas fa-search fa-rotate-90" style="cursor: pointer;position:relative;"></i>
+              <i class="fas fa-search" style="cursor: pointer;position:relative;"></i>
           </div>
         </form>
     </div>
@@ -72,15 +72,13 @@
                   </li>
                   <li style="margin-top: 250px;">
                     <form class="logOutHandler" action="/logout" method="post">
-                      <button type="submit" style="background:none;color:white;border:0;">
+                      <button type="submit" style="background:none;color:white;border:0;" onclick="showLoader()">
                       <table class="nav-links-text">
                         <tr>
-
                               <td>
                                 <i class="fas fa-times"></i>
                               </td>
                               <td>Exit</td>
-
                         </tr>
                         </button>
                       </table>
@@ -117,8 +115,8 @@
                   </div>
               <hr style="margin-top:10px;margin-top:10px;margin-bottom:10px" noshade >
             </div>
-            <div class="global-div-footer" style="" >
-              <table class="postForm-footer" width="100%">
+            <div class="global-div-footer">
+              <table class="postForm-footer" style="margin:0px auto;">
                   <tr>
                     <!-- media link -->
                     <td class="media" style="text-align:right" id="upload-single-image" onclick="">
@@ -126,7 +124,6 @@
                     </td>
                     <td class="media" style="text-align:right" ><i class="fas fa-video fa-lg media-icon"></i></td>
                     <td class="media" style="text-align:right" ><i class="fas fa-images fa-lg media-icon"></i></td>
-                    <td class="media" style="text-align:right" ><i class="fas fa-map-marker-alt fa-lg media-icon"></i></td>
                     <!-- post button -->
                     <td class="button-loc" style="text-align:center">
                       <button class="postForm-button" name="PostButton"></button>
@@ -229,10 +226,10 @@
                 <!-- TODO:make a socket.io listener event -->
 
                 <div class="comment-form" style="padding:10px;">
-                  <form class="" action="index.html" method="post">
+                  <form action="" method="post">
                     <table width="99%">
                       <tr>
-                        <td style="padding-bottom: 10px;"><input type="text" name="comment" placeholder="write comment here..." ></td>
+                        <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;"><input type="text" name="comment" placeholder="write comment here..." ></td>
                         <td align="left" style="width:1%"><input type="submit" name="" value=""></td>
                       </tr>
                     </table>

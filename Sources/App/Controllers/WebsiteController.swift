@@ -30,18 +30,15 @@ struct WebsiteController: RouteCollection {
     }
     
     func indexHandler(_ req: Request) throws -> Future<View> {
-        print(SimpleRandom.random(1...5))
-            
             return Post.query(on: req).sort(\.id, .descending).all().flatMap(to: View.self) { posts in
                 
                 //get the authenticated user
                 let user = try req.requireAuthenticated(User.self)
-                let postsData = posts.isEmpty ? nil : posts
-                let userData =  user
+                let posts = posts.isEmpty ? nil : posts
                 let context = IndexContext(
                     title: "futurpipol",
-                    posts: postsData,
-                    user: userData
+                    posts: posts,
+                    user: user
                 )
                 return try req.view().render("index", context)
             }
@@ -76,7 +73,12 @@ struct WebsiteController: RouteCollection {
         
     }
     func settingsHandler(_ req: Request) throws -> Future<View> {
-        let context = settingsContext(title: "Settings")
+        //get the authenticated user
+        let user = try req.requireAuthenticated(User.self)
+        let context = settingsContext(
+            title: "Settings",
+            user: user
+        )
         return try req.view().render("settings", context)
     }
     
@@ -134,6 +136,7 @@ struct ProfileContext: Encodable {
 
 struct settingsContext: Encodable {
     let title: String
+    let user: User
 }
 
 
