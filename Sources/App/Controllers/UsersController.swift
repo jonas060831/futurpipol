@@ -39,8 +39,9 @@ struct UsersController: RouteCollection {
         return try req.content.decode(User.self).flatMap(to: User.Public.self) { user in
             
             //assign a profile picture userimage from db
-            //let rand = SimpleRandom.random(1...5)
-            let pfURL = "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/\(user.Gender)/avatar\(SimpleRandom.random(1...5)).png"
+            let rand = SimpleRandom.random(1...5)
+            let gend = user.Gender
+            let pfURL = "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/\(gend)/avatar\(rand).png"
             
             user.ProfilePictureURL = pfURL
             
