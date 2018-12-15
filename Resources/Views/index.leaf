@@ -1,99 +1,18 @@
-
 #set("content"){
   <div class="container">
-
     <div id="searchSection" class="container-searchSection">
         <form class="" action="index.html" method="post">
-
           <div class="search-container">
               <input type="text" name="search" placeholder="Search for..">
               <i class="fas fa-search" style="cursor: pointer;position:relative;"></i>
           </div>
         </form>
     </div>
-    <div class="container-userSection">
+
+    <div class="container-postSection">
         <div class="global-div">
+          <form action="" method="post">
 
-            <div class="global-div-header" style="padding:15px 0px 10px 12px;border-top-left-radius:5px;">
-              <table>
-                <th>
-                  <a href="/profile">
-                  <span class="usersName" style="font-size:14px;font-weight:50">
-                    <img class="profileImage" align="middle" src="#(user.ProfilePictureURL)" style="border:2px solid rgb(24, 124, 124);border-radius: 50%;"/>
-                    #(user.Name)
-                  </span>
-                  </a>
-                </th>
-              </table>
-            </div>
-
-            <div class="global-div-body" style="padding:10px;height:400px;">
-              <div class="user-nav">
-                <ul>
-                  <li #if(title == "Home"){class="active"}>
-                    <a href="/">
-                      <table class="nav-links-text">
-                        <tr>
-                          <td><i class="fas fa-newspaper fa-sm"></i></td>
-                          <td>Feeds</td>
-                        </tr>
-                      </table>
-                    </a>
-                  </li>
-                  <li #if(title == "Messages"){class="active"}>
-                    <a href="/messages">
-                      <table class="nav-links-text">
-                        <tr>
-                          <td><i class="fas fa-comments"></i></td>
-                          <td>Messages</td>
-                        </tr>
-                      </table>
-                    </a>
-                  </li>
-                  <li #if(title == "Followers"){class="active"}>
-                    <a href="/followers">
-                      <table class="nav-links-text">
-                        <tr>
-                          <td><i class="fas fa-user-friends"></i></td>
-                          <td>Followers</td>
-                        </tr>
-                      </table>
-                    </a>
-                  </li>
-                  <li #if(title == "Settings"){class="active"}>
-                    <a href="/settings">
-                      <table class="nav-links-text">
-                        <tr>
-                          <td><i class="fas fa-cogs"></i></td>
-                          <td>Setings</td>
-                        </tr>
-                      </table>
-                    </a>
-                  </li>
-                  <li style="margin-top: 250px;">
-                    <form class="logOutHandler" action="/logout" method="post">
-                      <button type="submit" style="background:none;color:white;border:0;" onclick="showLoader()">
-                      <table class="nav-links-text">
-                        <tr>
-                              <td>
-                                <i class="fas fa-times"></i>
-                              </td>
-                              <td>Exit</td>
-                        </tr>
-                        </button>
-                      </table>
-                    </form>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="global-div-footer" style="border-bottom-left-radius:5px;padding:10px">
-            </div>
-        </div>
-    </div>
-    <div class="container-postSection" style="">
-        <div class="global-div" style="">
-          <form action="" method="post" >
             <div class="global-div-header" style="padding:15px">
               <table class="postForm-header" width="100%">
                   <th width="1%">
@@ -110,12 +29,14 @@
             <div class="global-div-body">
                   <div class="postForm-input-container">
                       <a href="/profile"><img style="cursor:pointer" src="#(user.ProfilePictureURL)"/></a>
-                      <input class="postForm-Text" type="text" name="Text" placeholder="Thoughts..">
+                      <textarea class="postForm-Text" name="Text" maxlength="1001" onkeyup="countChar(this)" rows="5" placeholder="Thoughts.."></textarea>
+                      <div id="charNum" style="font-size:9px;text-align:right;width:95%;height:9px;margin:0px auto;"></div>
                       <input type="hidden" name="creatorID" value="#(user.id)">
+
                   </div>
               <hr style="margin-top:10px;margin-top:10px;margin-bottom:10px" noshade >
             </div>
-            <div class="global-div-footer">
+            <div class="global-div-footer" style="">
               <table class="postForm-footer" style="margin:0px auto;">
                   <tr>
                     <!-- media link -->
@@ -132,9 +53,9 @@
                       <div class="select-style">
                         <select class="media" name="Typeofpost">
                           <option class="opt" value="Public" selected>Public</option>
-                          <option class="opt" value="Friends Only" >Friends Only</option>
-                          <option class="opt" value="Only Me" >Only Me</option>
-                          <option class="opt" value="Customize" >Customize</option>
+                          <option class="opt" value="Friends Only">Friends Only</option>
+                          <option class="opt" value="Only Me">Only Me</option>
+                          <option class="opt" value="Customize">Customize</option>
                         </select>
                       </div>
                     </td>
@@ -154,7 +75,6 @@
         4. new post to old post sortation
         5. live notification when a user is modifying post
         -->
-
     #if(posts){
           #for(post in posts){
           <div class="global-div"style="background:none;padding-bottom:5px;">
@@ -189,10 +109,13 @@
 
             </div>
             <div class="global-div-body" style="background-color:rgba(255, 255, 255, 0.2);border-radius:0px;">
-              <table style="width:100%">
-                <thead align="left">
+              <table style="width:90%">
+                <thead align="left" style="">
                   <!-- data.content.1 -->
-                    <span style="padding-left:15px;font-size: 22px;">#(post.Text)</span>
+                  <div class="text-container" style="text-align:left;margin:10px;">
+                    #(post.Text)
+                  </div>
+
                 </thead>
                 <tbody>
 
@@ -229,14 +152,13 @@
                   <form action="" method="post">
                     <table width="99%">
                       <tr>
-                        <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;"><input type="text" name="comment" placeholder="write comment here..." ></td>
-                        <td align="left" style="width:1%"><input type="submit" name="" value=""></td>
+                        <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;"><input type="text" name="comment" placeholder="comment here..." ></td>
+                        <td align="left" style="width:1%"><input type="submit" name="" value="" style="border:1px solid #ccc"></td>
                       </tr>
                     </table>
                   </form>
                 </div>
             </div>
-
           </div>
         }
     }else {
@@ -247,20 +169,18 @@
     <div class="container-extraSection">
       <div class="global-div">
         <div class="global-div-header" style="border-top-right-radius:5px;">
-          extra Section 5
+
         </div>
 
         <div class="global-div-body" style="height:400px;">
-          body
-          extra stuff goes here
+
         </div>
 
         <div class="global-div-footer" style="border-bottom-right-radius:5px;">
-          footer
+
         </div>
       </div>
     </div>
   </div>
-  <br><br><br><br><br><br><br><br><br>
 }
 #embed("base")

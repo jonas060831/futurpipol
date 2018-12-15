@@ -10,77 +10,43 @@
           </div>
         </form>
     </div>
-    <!-- <div class="container-userSection">
-        <div class="global-div">
 
-            <div class="global-div-header" style="padding:15px 0px 10px 12px;">
-            </div>
-
-            <div class="global-div-body" style="padding:10px;height:400px;">
-
-            </div>
-            <div class="global-div-footer" style="padding:10px">
-            </div>
+    <div class="container-postSection">
+      <div class="global-div">
+        <div class="global-div-header" style="text-align:center;padding:20px">
+          Settings
         </div>
-    </div> -->
-    <!-- <div class="container-postSection" style="">
-        <div class="global-div" style="">
-            <div class="global-div-header">
+        <div class="global-div-body2" >
 
+          <!-- Sign out -->
+          <div class="container2" style="margin:0px auto;width:50px;">
+            <label for="signOut">Sign Off</label>
+            <div class="user-nav">
+              <form class="logOutHandler" action="/logout" method="post" >
+                <button type="submit" name="signOut" style="background:none;color:white;border:1px solid #ccc;border-radius:50%;" onclick="showLoader()">
+                <table class="nav-links-text" style="background-color:red;width:40px;height:40px;border-radius:50%;padding-left:10px;">
+                  <tr><td style="text-align:middle"><i class="fas fa-times"></i></td></tr>
+                </table>
+                </button>
+              </form>
             </div>
-            <div class="global-div-body">
-
-            </div>
-            <div class="global-div-footer">
-
-            </div>
+          </div>
         </div>
-    </div> -->
-    <div class="container-feedSection">
-        <div class="global-div" style="">
-              <div class="global-div-header" style="padding:10px">
-                <span class="usersName" style="font-size:14px;font-weight:50">
-                  <img class="profileImage" align="middle" src="#(user.ProfilePictureURL)" style="border:2px solid rgb(24, 124, 124);border-radius: 50%;"/>
-                  #(user.Name)
-                </span>
-              </div>
-              <div class="global-div-body" style="padding:10px">
-                <ul>
-                  <form class="logOutHandler" action="/logout" method="post">
-                    <button type="submit" style="color:white;border:0;background:none;">
-                    <table class="nav-links-text">
-                      <tr>
-                            <td>
-                              <i class="fas fa-times"></i>
-                            </td>
-                            <td>Exit</td>
-                      </tr>
-                      </button>
-                    </table>
-                  </form>
-                </ul>
-              </div>
-              <div class="global-div-footer">
+        <div class="global-div-footer" style="background-color: rgba(247, 249, 250, 0.3);height: 50px;">
 
-              </div>
         </div>
+      </div>
     </div>
-
     <div class="container-extraSection">
       <div class="global-div">
         <div class="global-div-header" style="border-top-right-radius:5px;">
-          extra Section 5
         </div>
-
-        <div class="global-div-body" style="height:400px;">
-
+        <div class="global-div-body" style="height:395px;">
         </div>
         <div class="global-div-footer" style="border-bottom-right-radius:5px;">
         </div>
       </div>
-
     </div>
   </div>
-  <br><br><br><br><br><br><br><br><br>
 }
 #embed("base")

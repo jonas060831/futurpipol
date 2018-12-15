@@ -42,6 +42,7 @@ struct UsersController: RouteCollection {
             let rand = SimpleRandom.random(1...5)
             let gend = user.Gender
             let pfURL = "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/\(gend)/avatar\(rand).png"
+            
             user.ProfilePictureURL = pfURL
             
             //specify the cost higher number means longer hash & verify time

@@ -77,6 +77,44 @@ html, body,h1{
 }
 
 
+.user-nav{
+  color:white;
+  text-shadow: none;
+
+}
+.user-nav ul{
+  width: 100%;
+  padding: 5px;
+}
+.user-nav table td:nth-child(even) {
+  text-align:center;
+  padding:5px;
+}
+.user-nav table td:nth-child(odd) {
+  width: 20px;
+}
+.user-nav li a:hover:not(.active) {
+  text-shadow: 1px 1px 10px #fff;
+
+}
+.user-nav li.active a {
+  text-shadow: 1px 1px 10px #fff;
+  font-weight: bold;
+}
+.log-nav ul{
+  width: 100%;
+  padding: 5px;
+}
+.log-nav li a:hover:not(.active) {
+  text-shadow: 1px 1px 10px #fff;
+
+}
+.log-nav li.active a {
+  text-shadow: 1px 1px 10px #fff;
+  font-weight: bold;
+}
+
+
 /* -----------login.leaf PAGE------------- */
 
 /* login form */
@@ -321,19 +359,15 @@ input[type='checkbox'].toggle {
   padding-top: 35px;
 }
 
-.postForm-input-container input[type=text]{
+.postForm-input-container textarea{
   width: 85%;
-  height: 20px;
+  resize: none;
   box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
-  font-size: 14px;
+  border: none;
+  font-size: 13px;
   background: none;
+  margin-top: 18px;
   outline:none;
-  background-repeat: no-repeat;
   color: white;
 }
 .postForm-Text::placeholder {
@@ -366,12 +400,21 @@ input[type='checkbox'].toggle {
   background-color: rgba(16, 254, 4, 0.58);
   border-color: white;
 }
+/* cellspacing */
+.postForm-footer{ border-collapse: separate; border-spacing: 4px; } /* cellspacing="5" */
+.postForm-footer{ border-collapse: collapse; border-spacing: 10px; }
+.postForm-footer tr, .postForm-footer td { padding: 2px; }
 .media {
   cursor:pointer;
 }
 .media i:hover , .media select:hover {
   opacity: 0.7;
 }
+/* cellspacing */
+.comment-form{ border-collapse: separate; border-spacing: 4px; }
+.comment-form{ border-collapse: collapse; border-spacing: 5px; }
+.comment-form tr,.comment-form td { padding: 0px; }
+
 .comment-form input[type=text] {
   box-sizing: border-box;
   width: 100%;
@@ -385,9 +428,6 @@ input[type='checkbox'].toggle {
   border-radius: 0;
   -webkit-appearance: none;
 }
-
-
-
 .comment-form input[type=submit] {
   height: 25px;
   width: 25px;
@@ -400,50 +440,49 @@ input[type='checkbox'].toggle {
   border-color: rgba(96, 213, 219, 0.9);
   text-shadow: 2px 3px 8px #009da6;
 }
-.container {
-  /* occupy the whole screen width when using mobile and tablet */
-  width: 100%;
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-gap:5px;
-  grid-template-areas:
-  "container-searchSection"
-  "container-userSection"
-  "container-postSection"
-  "container-feedSection"
-  "container-extraSection"
-}
-
-/* .container div:nth-child(odd) { background-color: rgba(84, 189, 183, 0.20);}
-.container div:nth-child(even) { background-color: rgba(84, 189, 183, 0.10);} */
 
 /* Tablet and mobile Version*/
+@media screen and (max-width: 959px){
+  .container {
+    /* occupy the whole screen width when using mobile and tablet */
+    width: 100%;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap:5px;
+    grid-template-areas:
+    "container-searchSection"
+    "container-userSection"
+    "container-postSection"
+    "container-feedSection"
+    "container-extraSection"
+  }
+  /* .container div:nth-child(odd) { background-color: rgba(84, 189, 183, 0.20);}
+  .container div:nth-child(even) { background-color: rgba(84, 189, 183, 0.10);} */
 
-.container-searchSection {
-  grid-area: container-searchSection;
+  .container-searchSection {
+    grid-area: container-searchSection;
+  }
+  .container-userSection {
+  	grid-area: container-userSection;
+    display: none;
+  }
+  .container-postSection {
+  	grid-area: container-postSection;
+
+  }
+  .container-feedSection {
+  	grid-area: container-feedSection;
+  }
+  .container-extraSection {
+  	grid-area: container-extraSection;
+    display: none;
+  }
+  .global-div-body2 {
+    height: 485px;
+  }
 }
-.container-userSection {
-
-	grid-area: container-userSection;
-  display: none;
-
-}
-.container-postSection {
-
-	grid-area: container-postSection;
-}
-.container-feedSection {
-
-	grid-area: container-feedSection;
-}
-.container-extraSection {
-
-	grid-area: container-extraSection;
-  display: none;
-}
-
-/* Desktop Version */
+/* Desktop Versio */
 @media screen and (min-width: 960px){
 
   .container {
@@ -458,47 +497,37 @@ input[type='checkbox'].toggle {
   	"container-userSection container-postSection container-extraSection"
   	"container-userSection container-feedSection container-extraSection"
   }
+  .container-searchSection {
+    grid-area: container-searchSection;
+  }
+  .container-userSection {
+  	grid-area: container-userSection;
+    display: none;
+  }
+  .container-postSection {
+  	grid-area: container-postSection;
+  }
+  .container-feedSection {
+  	grid-area: container-feedSection;
+  }
+  .container-extraSection {
+  	grid-area: container-extraSection;
+    display: none;
+  }
   .container-searchSection input[type=text]{
     width: 100%;
   }
   .container-userSection{
-    height: auto;
-    margin-top: 38px;
+    margin-top: 58px;
     width: 200px;
     position: fixed;
     display: block;
   }
+  .container-userSection  .global-div-body {
+    height: 400px;
+  }
   .usersName img {
     bottom:3px;
-  }
-  .user-nav{
-    color:white;
-    text-shadow: none;
-
-  }
-  .user-nav ul{
-    width: 100%;
-    padding: 5px;
-  }
-  .user-nav li a:hover:not(.active) {
-    text-shadow: 1px 1px 10px #fff;
-
-  }
-  .user-nav li.active a {
-    text-shadow: 1px 1px 10px #fff;
-    font-weight: bold;
-  }
-  .log-nav ul{
-    width: 100%;
-    padding: 5px;
-  }
-  .log-nav li a:hover:not(.active) {
-    text-shadow: 1px 1px 10px #fff;
-
-  }
-  .log-nav li.active a {
-    text-shadow: 1px 1px 10px #fff;
-    font-weight: bold;
   }
   .container-extraSection{
     height: 400px;
@@ -508,14 +537,9 @@ input[type='checkbox'].toggle {
     width: 200px;
     margin-left: 770px;
   }
-  .user-nav table td:nth-child(even) {
-    text-align:center;
-    padding:5px;
+  .global-div-body2 {
+    height: 400px;
   }
-  .user-nav table td:nth-child(odd) {
-    width: 20px;
-  }
-
 }
 
 /* -----------settings.leaf PAGE------------- */
