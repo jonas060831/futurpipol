@@ -40,7 +40,8 @@ struct WebsiteController: RouteCollection {
                     title: "futurpipol",
                     posts: posts,
                     comments: comments,
-                    user: user
+                    user: user,
+                    commentCount: comments.count
                 )
                 return try req.view().render("index", context)
                 }
@@ -142,6 +143,7 @@ struct IndexContext: Content {
     let posts: [Post]?
     let comments: [Comment]?
     let user: User
+    let commentCount: Int?
 }
 struct PostData: Content {
     static var defaultMediaType =  MediaType.urlEncodedForm

@@ -1,4 +1,5 @@
 #set("content"){
+
   <div class="container">
     <div id="searchSection" class="container-searchSection">
         <form class="" action="index.html" method="post">
@@ -84,7 +85,7 @@
 
                   <table class="info-holder" style="border-collapse: collapse;width:100%;">
                     <tr>
-                        <th rowspan="2" align="left" style="width:38px;padding-bottom:10px"><img src="#(post.creatorInfo.ProfilePictureURL)" style="width:35px;border:2px solid rgb(24, 124, 124);border-radius: 50%;height:auto;"/></th>
+                        <th rowspan="2" align="left" style="width:38px;padding-bottom:10px"><img src="#(post.creatorInfo.ProfilePictureURL)" style="width:35px;border-radius: 50%;height:auto;"/></th>
                         <th align="left" style="padding-top:10px;color: rgb(24, 124, 124);text-shadow: 0px 0px 10px #060606;">#(post.creatorInfo.Name)</th>
                         <th rowspan="2" align="right" style="padding-bottom:25px">
 
@@ -103,7 +104,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <td align="left" style="padding-bottom:20px;font-size:7px">#(post.createdAt)</td>
+                        <td align="left" style="padding-bottom:20px;font-size:7px">#(post.createdAt) ago</td>
                     </tr>
                  </table>
 
@@ -113,7 +114,7 @@
                 <thead align="left" style="">
                   <!-- data.content.1 -->
                   <div class="text-container" style="text-align:left;margin:10px;">
-                    #(post.Text)
+                    <strong>#(post.Text)</strong>
                   </div>
                 </thead>
                 <tbody>
@@ -137,20 +138,46 @@
               <table style="width:100%;">
                   <th style="padding:5px;"width="98%">&nbsp;</th>
                   <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-star"></i></th>
-                  <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-comment-dots"></i></th>
+                  <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-comment-dots"><span class="commentOutput"></span></i></th>
               </table>
             </div>
             <div class="global-div-footer" style="height:auto;background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius:2px;border-bottom-right-radius:2px;margin-top:1px;padding:10px;">
+
+              <!-- hidden info -->
+              <span class="postID" style="display: none">#(post.id)</span>
+              <span id="totalcommentsCount" style="display:none">#(commentCount)</span>
+              #for(comment in comments){
+                <span class="commentPostID" style="display: none">#(comment.postID)</span>
+              }
+              <!-- hidden info -->
+
               <div class="commentsContainer">
                 #if(comments){
+
                   #for(comment in comments){
+
                     #if(comment.postID == post.id){
+
                       <table class="commentsTable">
                         <tr >
-                          <td style="color:rgb(24, 124, 124);background-color:rgba(225, 245, 250, 0.5);border-top-left-radius: 5px;border-bottom-left-radius: 5px"><img class="commenter-image" align="center" src="#(comment.creatorInfo.ProfilePictureURL)" style="border:2px solid rgb(24, 124, 124);border-radius: 50%;width:20px;height:auto;"/>&nbsp;#(comment.creatorInfo.Name):</td>
-                          <td style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;;background-color:rgba(225, 245, 250, 0.5);border-top-right-radius: 5px;border-bottom-right-radius: 5px">#(comment.Text)</td>
-                          <br>
+
+                          <td style="color:rgba(255, 255, 255, 1);vertical-align:top;">
+                            <a href="" class="user">
+                            <img class="commenter-image" align="top" src="#(comment.creatorInfo.ProfilePictureURL)" style="border-radius: 50%;width:20px;height:auto;"/>
+                            </a>
+                          </td>
+                          <td align="left" style="background-color:rgba(225, 245, 250, 0.5);border-radius:10px;padding:8px;box-sizing: border-box;width:500px">
+                            <span style="color: rgba(24, 124, 124, 1);font-weight:bold">#(comment.creatorInfo.Name) </span>
+                            <span style="color: rgba(255, 255, 255, 1);font-size: 12px;text-shadow: 0px 0px 10px #009da6;">#(comment.Text)</span>
+                          </td>
+                          <tr>
+                            <td></td>
+                            <td align="right">
+                              <span style="font-size:8px;">#(comment.createdAt) ago</span>
+                            </td>
+                          </tr>
                         </tr>
+                        <br>
                       </table>
                     }
                   }
@@ -198,5 +225,7 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript" src="./styles/js/master.js"></script>
 }
 #embed("base")

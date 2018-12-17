@@ -16,10 +16,11 @@
     <link rel="stylesheet" href="./styles/css/circle-nav/nav-design.css">
     <link rel="stylesheet" href="./styles/css/preloader/global-preloader.css">
     <script src="./styles/js/modernizrandpollyfills/modernizr-2.6.2.min.js"></script>
-    <script type="text/javascript" src="./styles/js/master.js"></script>
+    
 
     <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script> -->
+    <script src="./styles/js/jquery/jquery-3.3.1.js"></script>
 
   </head>
   <body class="radial-blur-background">
@@ -30,7 +31,100 @@
     </div>
     <!-- circle navigation bar -->
       #if(title == "Log In"){
+        <div style="display:none;">
+        <button class="cn-button" id="cn-button">+</button>
+        <div class="cn-wrapper" id="cn-wrapper">
+          <ul>
+            <li #if(title == "Profile"){class="active"}><a href="/profile"><span class="fas fa-user-circle fa-rotate-90"></span></a></li>
+            <li #if(title == "futurpipol"){class="active"}><a href="/"><span class="fas fa-newspaper"></span></a></li>
+            <li><a href="#"><span class="fas fa-comments"></span></a></li>
+            <li><a href="#"><span class="fas fa-user-friends"></span></a></li>
+             <li #if(title == "Settings"){class="active"}><a href="/settings"><span class="fas fa-cogs fa-rotate-270"></span></a></li>
+           </ul>
+          </div>
+        <div id="cn-overlay" class="cn-overlay"></div>
 
+        <div class="container" style="z-index:1">
+          <div class="container-userSection">
+            <div class="global-div">
+              <div class="global-div-header" style="padding:15px 0px 10px 12px;border-top-left-radius:5px;">
+                <table>
+                  <th>
+                    <a href="/profile">
+                    <span class="usersName" style="font-size:14px;font-weight:50">
+                      <img class="profileImage" align="middle" src="#(user.ProfilePictureURL)" style="border:2px solid rgb(24, 124, 124);border-radius: 50%;"/>
+                      #(user.Name)
+                    </span>
+                    </a>
+                  </th>
+                </table>
+              </div>
+              <div class="global-div-body" style="padding:10px">
+                <div class="user-nav">
+                  <ul>
+                    <li #if(title == "futurpipol"){class="active"}>
+                      <a href="/">
+                        <table class="nav-links-text">
+                          <tr>
+                            <td><i class="fas fa-newspaper fa-sm"></i></td>
+                            <td>Feeds</td>
+                          </tr>
+                        </table>
+                      </a>
+                    </li>
+                    <li #if(title == "Messages"){class="active"}>
+                      <a href="/messages">
+                        <table class="nav-links-text">
+                          <tr>
+                            <td><i class="fas fa-comments"></i></td>
+                            <td>Messages</td>
+                          </tr>
+                        </table>
+                      </a>
+                    </li>
+                    <li #if(title == "Followers"){class="active"}>
+                      <a href="/followers">
+                        <table class="nav-links-text">
+                          <tr>
+                            <td><i class="fas fa-user-friends"></i></td>
+                            <td>Followers</td>
+                          </tr>
+                        </table>
+                      </a>
+                    </li>
+                    <li #if(title == "Settings"){class="active"}>
+                      <a href="/settings">
+                        <table class="nav-links-text">
+                          <tr>
+                            <td><i class="fas fa-cogs"></i></td>
+                            <td>Setings</td>
+                          </tr>
+                        </table>
+                      </a>
+                    </li>
+                    <li>
+                      <form class="logOutHandler" action="/logout" method="post">
+                        <button type="submit" style="background:none;color:white;border:0;" onclick="showLoader()">
+                        <table class="nav-links-text">
+                          <tr>
+                                <td>
+                                  <i class="fas fa-times"></i>
+                                </td>
+                                <td>Exit</td>
+                          </tr>
+                          </button>
+                        </table>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="global-div-footer" style="border-bottom-left-radius:5px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       }else {
         <button class="cn-button" id="cn-button">+</button>
         <div class="cn-wrapper" id="cn-wrapper">
