@@ -1,7 +1,7 @@
 import Vapor
 import FluentPostgreSQL
 
-final class Post: Decodable {
+final class Post: Codable {
     
     var id: Int?
     var Text: String?
