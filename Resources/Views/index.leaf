@@ -115,12 +115,9 @@
                   <div class="text-container" style="text-align:left;margin:10px;">
                     #(post.Text)
                   </div>
-
                 </thead>
                 <tbody>
-
                   <div class="body-post-container" style="width:100%;overflow:hidden">
-
                   <!-- data.content.2 -->
                   #if(post.Image){
                     <img src="#(post.Image)" alt="" style="width:100%;">
@@ -139,20 +136,39 @@
               <!-- star and comment -->
               <table style="width:100%;">
                   <th style="padding:5px;"width="98%">&nbsp;</th>
-                  <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-star">1</i></th>
-                  <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-comment-dots">1</i></th>
+                  <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-star"></i></th>
+                  <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-comment-dots"></i></th>
               </table>
-
             </div>
-            <div class="global-div-footer" style="height:auto;background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius:2px;border-bottom-right-radius:2px;margin-top:1px">
+            <div class="global-div-footer" style="height:auto;background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius:2px;border-bottom-right-radius:2px;margin-top:1px;padding:10px;">
+              <div class="commentsContainer">
+                #if(comments){
+                  #for(comment in comments){
+                    #if(comment.postID == post.id){
+                      <table class="commentsTable">
+                        <tr >
+                          <td style="color:rgb(24, 124, 124);background-color:rgba(225, 245, 250, 0.5);border-top-left-radius: 5px;border-bottom-left-radius: 5px"><img class="commenter-image" align="center" src="#(comment.creatorInfo.ProfilePictureURL)" style="border:2px solid rgb(24, 124, 124);border-radius: 50%;width:20px;height:auto;"/>&nbsp;#(comment.creatorInfo.Name):</td>
+                          <td style="color: rgba(255, 255, 255, 1);text-shadow: 0px 0px 10px #009da6;;background-color:rgba(225, 245, 250, 0.5);border-top-right-radius: 5px;border-bottom-right-radius: 5px">#(comment.Text)</td>
+                          <br>
+                        </tr>
+                      </table>
+                    }
+                  }
+                }else {
+                  <p>no comment yet</p>
+                }
+              </div>
+
 
                 <!-- TODO:make a socket.io listener event -->
-
-                <div class="comment-form" style="padding:10px;">
-                  <form action="" method="post">
+                <div class="comment-form" style="margin-top: 25px;">
+                  <form action="/createComment" method="post">
                     <table width="99%">
                       <tr>
-                        <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;"><input type="text" name="comment" placeholder="comment here..." ></td>
+                        <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;">
+                          <input type="hidden" name="postID" value="#(post.id)">
+                          <input type="text" name="Text" placeholder="comment here..." >
+                        </td>
                         <td align="left" style="width:1%"><input type="submit" name="" value="" style="border:1px solid #ccc"></td>
                       </tr>
                     </table>

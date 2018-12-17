@@ -1,7 +1,7 @@
 import Vapor
 import FluentPostgreSQL
 
-final class Post: Codable {
+final class Post: Decodable {
     
     var id: Int?
     var Text: String?
@@ -19,7 +19,6 @@ final class Post: Codable {
     var updatedAt: Date?
     
     var Star: Int?
-    var Comment: String?
     
     init(Text: String?, Image: String?, Video: String?, Location: String?, Typeofpost: String, creatorID: User.ID){
         
@@ -30,23 +29,6 @@ final class Post: Codable {
         self.Typeofpost = Typeofpost
         self.creatorID = creatorID
     }
-    
-    //create a public version of the user
-    final class Public: Codable {
-        
-        var id: UUID?
-        var Name: String
-        var Username: String
-        var ProfilePictureURL: String
-        
-        init(Name: String, Username: String, ProfilePictureURL: String){
-            self.ProfilePictureURL = ProfilePictureURL
-            self.Name = Name
-            self.Username = Username
-        }
-    }
-    
-
 }
 
 extension Post: PostgreSQLModel {}
@@ -55,9 +37,18 @@ extension Post: Content {}
 
 extension Post: Parameter {}
 
+
+//parent to child rel
 extension Post {
     var creator: Parent<Post, User> {
         return parent(\.creatorID)
+    }
+}
+
+//parent to child rel
+extension Post {
+    var comments: Children<Post, Comment> {
+        return children(\.postID)
     }
 }
 
@@ -70,4 +61,3 @@ extension Post: Migration {
         }
     }
 }
-

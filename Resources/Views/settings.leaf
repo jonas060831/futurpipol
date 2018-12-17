@@ -19,7 +19,7 @@
         <div class="global-div-body2" >
 
           <!-- Sign out -->
-          <div class="container2" style="margin:0px auto;width:50px;">
+          <div class="container2" style="margin:0px auto;width:55px;">
             <label for="signOut">Sign Off</label>
             <div class="user-nav">
               <form class="logOutHandler" action="/logout" method="post" >

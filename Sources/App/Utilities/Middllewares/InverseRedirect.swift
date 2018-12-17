@@ -31,9 +31,3 @@ public struct InverseRedirectMiddleware<A>: Middleware where A: Authenticatable 
         return InverseRedirectMiddleware(path: path)
     }
 }
-
-
-
-
-
-

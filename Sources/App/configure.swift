@@ -58,6 +58,13 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     migrations.add(model: User.self, database: .psql)
     //add the post model
     migrations.add(model: Post.self, database: .psql)
+    //add the comment model
+    migrations.add(model: Comment.self, database: .psql)
+    
+    
+//    migrations.add(migration: Comment.self, database: .psql)
+//    Comment.defaultDatabase = .psql
+    
     //add the token model
     migrations.add(model: Token.self, database: .psql)
     services.register(migrations)

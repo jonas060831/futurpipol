@@ -403,13 +403,19 @@ input[type='checkbox'].toggle {
 /* cellspacing */
 .postForm-footer{ border-collapse: separate; border-spacing: 4px; } /* cellspacing="5" */
 .postForm-footer{ border-collapse: collapse; border-spacing: 10px; }
-.postForm-footer tr, .postForm-footer td { padding: 2px; }
+.postForm-footer tr, .postForm-footer td { padding: 4px; }
 .media {
   cursor:pointer;
 }
 .media i:hover , .media select:hover {
   opacity: 0.7;
 }
+
+/* cellspacing */
+.commentsTable{ border-collapse: separate; border-spacing: 5px; } /* cellspacing="5" */
+.commentsTable{ border-collapse: collapse; border-spacing: 10px; }
+.commentsTable tr, .commentsTable td { padding: 5px; }
+
 /* cellspacing */
 .comment-form{ border-collapse: separate; border-spacing: 4px; }
 .comment-form{ border-collapse: collapse; border-spacing: 5px; }

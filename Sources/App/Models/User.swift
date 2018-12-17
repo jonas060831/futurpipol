@@ -68,6 +68,7 @@ extension User.Public: PostgreSQLUUIDModel {
     static let entity = User.entity
 }
 extension User.Public: Content {}
+
 //retrieving post from the user parent to child rel
 extension User {
     var posts: Children<User, Post> {

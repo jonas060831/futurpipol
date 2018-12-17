@@ -1,6 +1,7 @@
 import Vapor
 import Fluent
 import Authentication
+import FluentPostgreSQL
 
 //create a post
 //get all post
@@ -21,14 +22,13 @@ struct PostsController: RouteCollection {
         //postsRoutes.put(Post.parameter, use: updateHandler)//5
         postsRoutes.get("search", use: searchHandler) //6
         postsRoutes.get(Post.parameter, "user", use: getUserHandler) //7
-        
-        
+        postsRoutes.get(Post.parameter, "comments", use: getCommentsHandler)
+        postsRoutes.get("combine", use: getAllPostandCommentsHandler)
         
         //basic authentication
         //let basicAuthMiddleware = User.basicAuthMiddleware(using: BCryptDigest())
         //let guardAuthMiddleware = User.guardAuthMiddleware()
         //let protected = postsRoutes.grouped(basicAuthMiddleware, guardAuthMiddleware)
-        
         
         //using token on every http req
         let tokenAuthMiddleware = User.tokenAuthMiddleware()
@@ -37,7 +37,7 @@ struct PostsController: RouteCollection {
         let tokenAuthGroup = postsRoutes.grouped(tokenAuthMiddleware,guardAuthMiddleware)
         tokenAuthGroup.post(use: createHandler)
         tokenAuthGroup.delete(use: deleteHandler)
-        tokenAuthGroup.put(use: updateHandler)
+        tokenAuthGroup.put(Post.parameter ,use: updateHandler)
     }
 
     func createHandler(_ req: Request) throws -> Future<Post> {
@@ -47,25 +47,26 @@ struct PostsController: RouteCollection {
             //get the authenticated user
             let user = try req.requireAuthenticated(User.self)
             
-            let post = try Post(Text: postCreateData.Text, Image: postCreateData.Image, Video: postCreateData.Video, Location: postCreateData.Location, Typeofpost: postCreateData.Typeofpost, creatorID: user.requireID() )
-            
-           //computed authenticated user autofill
+            let post = try Post(Text: postCreateData.Text, Image: postCreateData.Image, Video: postCreateData.Video, Location: postCreateData.Location, Typeofpost: postCreateData.Typeofpost, creatorID: user.requireID())
+
+           //computed authenticated user
             let creatorInfo = User.Public(id: user.id, Name: user.Name, Username: user.Username, ProfilePictureURL: user.ProfilePictureURL!)
-            
             post.creatorInfo = creatorInfo
             return post.save(on: req)
         }
     }
-    
     //2
-    func getAllHandler(_ req: Request) -> Future<[Post]> {
+    func getAllHandler(_ req: Request) -> Future<[Post]>  {
         
         return Post.query(on: req).all()
     }
+    
     //3
     func getHandler(_ req: Request) throws -> Future<Post> {
+        
         return try req.parameters.next(Post.self)
     }
+    
     //4
     func deleteHandler(_ req: Request) throws -> Future<HTTPStatus> {
         return try req.parameters.next(Post.self).flatMap(to: HTTPStatus.self) { post in
@@ -99,18 +100,35 @@ struct PostsController: RouteCollection {
             return post.save(on: req)
         }
     }
+    
     //6
     func getUserHandler(_ req: Request) throws -> Future<User.Public> {
         return try req.parameters.next(Post.self).flatMap(to: User.Public.self) { post in
             post.creator.get(on: req).convertToPublic()
         }
     }
+    //7 parent to child query
+    func getCommentsHandler(_ req: Request) throws -> Future<[Comment]> {
+        return try req.parameters.next(Post.self).flatMap(to: [Comment].self) { post in
+            try post.comments.query(on: req).all()
+        }
+    }
+    //8 combine post and comments query
+    func getAllPostandCommentsHandler(_ req: Request) -> Future<[PostWithComments]>  {
+        return Post.query(on: req).all().flatMap { fetchChildren(of: $0, via: \Comment.postID, on: req) { post, comments in
+            
+            PostWithComments(id: post.id, Post: post, Comments: comments)
+            }
+        }
+        
+    }
 }
-struct PostContent: Encodable {
 
-    let posts: [Post]?
 
-    let users: [User.Public]?
+struct PostWithComments: Content {
+    let id: Int?
+    let Post: Post
+    let Comments: [Comment]
 }
 
 struct PostCreateData: Content {

@@ -7,10 +7,7 @@ struct WebsiteController: RouteCollection {
     
     func boot(router: Router) throws {
         
-        
-
         let authSessionsRoutes = router.grouped(User.authSessionsMiddleware())
-        
         
         //redirect UNAUTHENTICATED users to login page
         let protectedRoutes = authSessionsRoutes.grouped(RedirectMiddleware<User>.login())
@@ -18,11 +15,13 @@ struct WebsiteController: RouteCollection {
         protectedRoutes.post(use: createPostHandler)
         protectedRoutes.get("profile", use: profileHandler)
         protectedRoutes.get("settings", use: settingsHandler)
+        protectedRoutes.post("createComment", use: createCommentHandler)
         
         //redirect AUTHENTICATED users to home page when trying to visit login page
         let protectedRoutes2 = authSessionsRoutes.grouped(InverseRedirectMiddleware<User>.home())
         protectedRoutes2.get("login", use: loginHandler)
         protectedRoutes2.post(LoginPostData.self, at: "login", use: loginPostHandler)
+        
         
         //logout the user
         router.post("logout", use: logoutHandler)
@@ -30,17 +29,21 @@ struct WebsiteController: RouteCollection {
     }
     
     func indexHandler(_ req: Request) throws -> Future<View> {
+
             return Post.query(on: req).sort(\.id, .descending).all().flatMap(to: View.self) { posts in
                 
+                return Comment.query(on: req).sort(\.id, .ascending).all().flatMap(to: View.self) { comments in
                 //get the authenticated user
                 let user = try req.requireAuthenticated(User.self)
                 let posts = posts.isEmpty ? nil : posts
                 let context = IndexContext(
                     title: "futurpipol",
                     posts: posts,
+                    comments: comments,
                     user: user
                 )
                 return try req.view().render("index", context)
+                }
             }
     }
     func createPostHandler(_ req: Request) throws -> Future<Response> {
@@ -58,6 +61,26 @@ struct WebsiteController: RouteCollection {
             
             return post.save(on: req).map(to: Response.self) { post in
 
+                return req.redirect(to: "/")
+            }
+        }
+    }
+    
+    func createCommentHandler(_ req: Request) throws -> Future<Response> {
+        return try req.content.decode(PostCommentData.self).flatMap(to: Response.self) { data in
+            
+            //get the authenticated user
+            let user = try req.requireAuthenticated(User.self)
+            
+            let comment = Comment(Text: data.Text, postID: data.postID)
+            
+            //computed authenticated user autofill
+            let creatorInfo = User.Public(id: user.id, Name: user.Name, Username: user.Username, ProfilePictureURL: user.ProfilePictureURL!)
+            
+            comment.creatorInfo = creatorInfo
+            
+            return comment.save(on: req).map(to: Response.self) { comment in
+                
                 return req.redirect(to: "/")
             }
         }
@@ -114,9 +137,10 @@ struct WebsiteController: RouteCollection {
     }
 }
 
-struct IndexContext: Encodable {
+struct IndexContext: Content {
     let title: String
     let posts: [Post]?
+    let comments: [Comment]?
     let user: User
 }
 struct PostData: Content {
@@ -152,4 +176,10 @@ struct LoginPostData: Content {
     static var defaultMediaType =  MediaType.urlEncodedForm
     let Username: String
     let Password: String
+}
+
+struct PostCommentData: Content {
+    static var defaultMediaType =  MediaType.urlEncodedForm
+    let Text: String?
+    let postID: Int
 }

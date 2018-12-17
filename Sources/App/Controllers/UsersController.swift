@@ -34,21 +34,20 @@ struct UsersController: RouteCollection {
         //MUST PROVIDE NAME, PASSWORD AND EMAIL
         //then other info can be provided later on
         
-        
-
+    
         return try req.content.decode(User.self).flatMap(to: User.Public.self) { user in
             
             //assign a profile picture userimage from db
             let rand = SimpleRandom.random(1...5)
             let gend = user.Gender
-            let pfURL = "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/\(gend)/avatar\(rand).png"
             
+            let pfURL = "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/\(gend)/avatar\(rand).png"
+
             user.ProfilePictureURL = pfURL
             
             //specify the cost higher number means longer hash & verify time
             let hashedpw = try BCrypt.hash(user.Password, cost: 15)
             user.Password = hashedpw
-            
             return user.save(on: req).convertToPublic()
         }
     }
