@@ -3,7 +3,7 @@
 
 postTextCounter(); //counter for the text character being input in the postSection
 commentCounter(); //counter for comment function
-showComment();
+showAllComment();//show all comments onlick
 })();
 
 function postTextCounter(val){
@@ -50,7 +50,7 @@ function commentCounter(){
         }
   }
 }
-function showComment(input){
+function showAllComment(input){
   //th that acts like a button
   var B = document.getElementsByClassName('showCommentButton');
   //the initially hidden comment container

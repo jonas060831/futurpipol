@@ -63,8 +63,8 @@
 }
 
 .cn-button {
-  border: none;
-  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow:0px 0px 10px #009da6;
   /* text color */
   color: black;
   text-align: center;
@@ -89,7 +89,8 @@
   /* font color */
   color: white;
   /* background */
-  background-color: gray
+  background-color: gray;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .csstransforms .cn-wrapper li {

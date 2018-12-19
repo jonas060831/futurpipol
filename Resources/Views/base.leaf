@@ -29,7 +29,7 @@
       <i class="fas fa-redo-alt fa-spin" style="font-size:48px;color:#06f2ff"></i>
     </div>
     <!-- circle navigation bar -->
-    
+
         <button class="cn-button" id="cn-button">+</button>
         <div class="cn-wrapper" id="cn-wrapper">
           <ul>

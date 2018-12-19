@@ -114,7 +114,7 @@
                 <thead align="left" style="">
                   <!-- data.content.1 -->
                   <div class="text-container" style="text-align:left;margin:10px;">
-                    <strong>#(post.Text)</strong>
+                    <strong style="width:100%;">#(post.Text)</strong>
                   </div>
                 </thead>
                 <tbody>
@@ -138,7 +138,7 @@
               <table style="width:100%;">
                   <th style="padding:5px;"width="98%">&nbsp;</th>
                   <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-star"></i></th>
-                  <th class="showCommentButton" onclick="showComment(#(post.id))" style="cursor:pointer;padding:5px;font-size:10px;" align="right" ><span class="commentCount" style="font-size:14px;margin-right:2px;"></span><i class="fas fa-comment-dots"></i></th>
+                  <th class="showCommentButton" onclick="showAllComment(#(post.id))" style="cursor:pointer;padding:5px;font-size:10px;" align="right" ><span class="commentCount" style="font-size:14px;margin-right:2px;"></span><i class="fas fa-comment-dots"></i></th>
               </table>
             </div>
             <div class="global-div-footer" style="height:auto;background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius:2px;border-bottom-right-radius:2px;margin-top:1px;padding:10px;">
@@ -151,7 +151,7 @@
               }
               <!-- hidden info -->
 
-              <div class="commentsContainer">
+              <div class="commentsContainer" style="width:100%">
                 #if(comments){
 
                   #for(comment in comments){
