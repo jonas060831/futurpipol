@@ -23,7 +23,7 @@
             <label for="signOut">Sign Off</label>
             <div class="user-nav">
               <form class="logOutHandler" action="/logout" method="post" >
-                <button type="submit" name="signOut" style="background:none;color:white;border:1px solid #ccc;border-radius:50%;" onclick="showLoader()">
+                <button type="submit" name="signOut" style="background:none;color:white;border:1px solid #ccc;border-radius:50%;" onclick="">
                 <table class="nav-links-text" style="background-color:red;width:40px;height:40px;border-radius:50%;padding-left:10px;">
                   <tr><td style="text-align:middle"><i class="fas fa-times"></i></td></tr>
                 </table>

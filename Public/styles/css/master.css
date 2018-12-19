@@ -447,6 +447,9 @@ input[type='checkbox'].toggle {
   border-color: rgba(96, 213, 219, 0.9);
   text-shadow: 2px 3px 8px #009da6;
 }
+.commentsContainer{
+  display: none;
+}
 
 /* Tablet and mobile Version*/
 @media screen and (max-width: 959px){

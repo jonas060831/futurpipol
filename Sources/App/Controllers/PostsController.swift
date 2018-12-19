@@ -36,7 +36,7 @@ struct PostsController: RouteCollection {
         
         let tokenAuthGroup = postsRoutes.grouped(tokenAuthMiddleware,guardAuthMiddleware)
         tokenAuthGroup.post(use: createHandler)
-        tokenAuthGroup.delete(use: deleteHandler)
+        tokenAuthGroup.delete(Post.parameter, use: deleteHandler)
         tokenAuthGroup.put(Post.parameter ,use: updateHandler)
     }
 
