@@ -14,6 +14,7 @@ struct CommentsController: RouteCollection {
         
         let tokenAuthGroup = commentsRoutes.grouped(tokenAuthMiddleware,guardAuthMiddleware)
         tokenAuthGroup.post(use: createHandler)
+        tokenAuthGroup.delete(Comment.parameter, use: deleteHandler)
         
     }
     
@@ -37,6 +38,11 @@ struct CommentsController: RouteCollection {
     func getAllHandler(_ req: Request) -> Future<[Comment]> {
         
         return Comment.query(on: req).all()
+    }
+    func deleteHandler(_ req: Request) throws -> Future<HTTPStatus> {
+        return try req.parameters.next(Comment.self).flatMap(to: HTTPStatus.self) { comment in
+            comment.delete(on: req).transform(to: HTTPStatus.noContent)
+        }
     }
 }
 
