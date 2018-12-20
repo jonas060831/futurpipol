@@ -30,7 +30,7 @@
             <div class="global-div-body">
                   <div class="postForm-input-container">
                       <a href="/profile"><img style="cursor:pointer" src="#(user.ProfilePictureURL)"/></a>
-                      <textarea class="postForm-Text" name="Text" maxlength="1001" onkeyup="postTextCounter(this)" rows="5" placeholder="Thoughts.."></textarea>
+                      <textarea class="postForm-Text" name="Text" maxlength="1001" onkeyup="postTextCounter(this)" rows="5" placeholder="Thoughts.." required></textarea>
                       <div id="charNum" style="font-size:9px;text-align:right;width:95%;height:9px;margin:0px auto;"></div>
                       <input type="hidden" name="creatorID" value="#(user.id)">
 
@@ -166,9 +166,9 @@
                             <img class="commenter-image" align="top" src="#(comment.creatorInfo.ProfilePictureURL)" style="border-radius: 50%;width:20px;height:auto;"/>
                             </a>
                           </td>
-                          <td align="left" style="background-color:rgba(225, 245, 250, 0.5);border-radius:10px;padding:8px;width:400px;">
+                          <td align="left" style="background-color:rgba(225, 245, 250, 0.5);border-radius:10px;padding:8px;width:100%;min-width:400px;">
                             <a href=""><span style="color: rgba(24, 124, 124, 1);font-weight:bold">#(comment.creatorInfo.Name)</span></a>
-                            <span style="color: rgba(255, 255, 255, 1);font-size:12vw;text-shadow: 0px 0px 10px #009da6;">#(comment.Text)</span>
+                            <span style="color: rgba(255, 255, 255, 1);font-size:12;text-shadow: 0px 0px 10px #009da6;">#(comment.Text)</span>
                           </td>
                           <tr>
                             <td></td>
@@ -191,7 +191,7 @@
                       <tr>
                         <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;">
                           <input type="hidden" name="postID" value="#(post.id)">
-                          <input type="text" name="Text" placeholder="comment here..." >
+                          <input type="text" name="Text" placeholder="comment here..."  required>
                         </td>
                         <td align="left" style="width:1%"><input type="submit" name="" value="" style="border:1px solid #ccc"></td>
                       </tr>
