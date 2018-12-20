@@ -412,7 +412,7 @@ input[type='checkbox'].toggle {
 }
 
 /* cellspacing */
-.commentsTable{ border-collapse: separate; border-spacing: 5px;table-layout:fixed;overflow: hidden;min-width: 400px;} /* cellspacing="5" */
+.commentsTable{ border-collapse: separate; border-spacing: 5px;table-layout:fixed;} /* cellspacing="5" */
 .commentsTable{ border-collapse: collapse; border-spacing: 10px; }
 .commentsTable td { padding-right: 5px;}
 .commentsTable td { padding-right: 5px;}
