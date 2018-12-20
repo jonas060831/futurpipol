@@ -386,6 +386,7 @@ input[type='checkbox'].toggle {
   height:auto;
   background: none;
   padding-left: 10px;
+  
 }
 .postForm-button {
   width: 50px;
@@ -512,7 +513,6 @@ input[type='checkbox'].toggle {
   }
   .container-userSection {
   	grid-area: container-userSection;
-    display: none;
   }
   .container-postSection {
   	grid-area: container-postSection;
