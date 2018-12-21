@@ -183,7 +183,8 @@
                         </th>
                     </tr>
                     <tr>
-                        <td align="left" style="padding-bottom:20px;font-size:7px">#(post.createdAt) ago</td>
+                        <td align="left" class="timeStampRaw" style="padding-bottom:20px;font-size:7px;display:none;">#(post.createdAt)</td>
+                        <td align="left" class="" style="padding-bottom:20px;font-size:7px;"><span class="timeStamp"></span></td>
                     </tr>
                  </table>
 
@@ -252,7 +253,8 @@
                           <tr>
                             <td></td>
                             <td align="right">
-                              <span style="font-size:8px;">#(comment.createdAt) ago</span>
+                              <span class="timeStampRaw"style="font-size:8px;display:none;">#(comment.createdAt)</span>
+                              <span class="timeStamp" style="font-size:8px;"></span>
                             </td>
                           </tr>
                         </tr>
