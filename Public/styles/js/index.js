@@ -1,13 +1,11 @@
 //when the view loads in the index
-(function() {
+$(document).ready(function(){
+  postTextCounter(); //counter for the text character being input in the postSection
+  timeStampConverter();
+  commentCounter(); //counter for comment function
+  showAllComment();//show all comments onlick
 
-postTextCounter(); //counter for the text character being input in the postSection
-timeStampConverter();
-commentCounter(); //counter for comment function
-showAllComment();//show all comments onlick
-
-})();
-
+});
 function postTextCounter(val){
   if (val != null) {
     var len = val.value.length
@@ -19,65 +17,7 @@ function postTextCounter(val){
       }
   }
 }
-function commentCounter(){
-  //the data
-  //commentpostforeignkey
-  var CD = document.getElementsByClassName('commentPostID');
-  //total comment count
-  var CC= parseInt(document.getElementById('totalcommentsCount').innerHTML);
-  //postID
-  var PID = document.getElementsByClassName('postID');
-  //output
-  var CO = document.getElementsByClassName('commentCount');
 
-  var a = [];
-  var b = [];
-  // append the commentpostforeignkey in the array
-  for (var i = 0; i < CC; i++) {
-      a.push(CD[i].innerHTML);
-  }
-  for (var i = 0; i < PID.length; i++) {
-    b.push(PID[i].innerHTML);
-  }
-  for (var i = 0; i < PID.length; i++) {
-
-        //if theres no comment dont show it
-        if (a.filter(sameNumbersOnly).length == 0) {
-          CO[i].innerHTML = "";
-        }else {
-          CO[i].innerHTML = a.filter(sameNumbersOnly).length;
-        }
-        function sameNumbersOnly(value) {
-            return value == b[i];
-        }
-  }
-}
-function showAllComment(input){
-  //th that acts like a button
-  var B = document.getElementsByClassName('showCommentButton');
-  //the initially hidden comment container
-  var commCont = document.getElementsByClassName('commentsContainer');
-  //postid
-  var PID = document.getElementsByClassName('postID');
-  var a = [];
-
-  for (var i = 0; i < PID.length; i++) {
-    //push the post id inside array
-    a.push(PID[i].innerHTML);
-  }
-//adding the click listener to table th element
-for (var i = 0; i < B.length; i++) {
-    B[i].addEventListener("click", showCommentContainer());
-}
-function showCommentContainer(){
-
-    for (var i = 0; i < a.length; i++) {
-      if (a[i] == input) {
-            commCont[i].style.display = "block";
-      }
-    }
-  }
-}
 function timeStampConverter(){
 
   //post timeStamp
@@ -168,11 +108,18 @@ function timeStampConverter(){
           //within the week
           return new Date(input).toLocaleTimeString("en-us", options2);
         }
-        return new Date(input).toLocaleTimeString("en-us", options);
+        return new Date(input).toLocaleTimeString("en-us", options3);
     }else if(weeks <= 4){
 
       if(weeks == 1 && hours <= 0) {
         return "a week ago";
+      }
+      else if (weeks > 1 && weeks <= 4 ) {
+        if (days % 7 == 0) {
+          return weeks + "w ";
+        }else if (days % 7 >= 1) {
+          return weeks + "w " + days % 7 + "d";
+        }
       }
         return new Date(input).toLocaleTimeString("en-us", options3);
 
@@ -194,3 +141,96 @@ function timeStampConverter(){
 
 
 }
+
+function commentCounter(){
+  //the data
+  //commentpostforeignkey
+  var CD = document.getElementsByClassName('commentPostID');
+  //total comment count
+  var CC= parseInt(document.getElementById('totalcommentsCount').innerHTML);
+  //postID
+  var PID = document.getElementsByClassName('postID');
+  //the initially hidden comment container
+  var commCont = document.getElementsByClassName('commentsContainer');
+  //output
+  var CO = document.getElementsByClassName('commentCount');
+
+  var a = [];
+  var b = [];
+  // append the commentpostforeignkey in the array
+  for (var i = 0; i < CC; i++) {
+      a.push(CD[i].innerHTML);
+  }
+  for (var i = 0; i < PID.length; i++) {
+    b.push(PID[i].innerHTML);
+  }
+  for (var i = 0; i < PID.length; i++) {
+
+        //if theres no comment dont show 0
+        if (a.filter(sameNumbersOnly).length == 0) {
+          CO[i].innerHTML = "";
+        }else if (a.filter(sameNumbersOnly).length == 1) {
+          CO[i].innerHTML = a.filter(sameNumbersOnly).length;
+          commCont[i].style.display = "block";
+        }else {
+          CO[i].innerHTML = a.filter(sameNumbersOnly).length;
+        }
+        function sameNumbersOnly(value) {
+            return value == b[i];
+        }
+  }
+}
+
+function showAllComment(input){
+  //th that acts like a button
+  var B = document.getElementsByClassName('showCommentButton');
+  //the initially hidden comment container
+  var commCont = document.getElementsByClassName('commentsContainer');
+  //postid
+  var PID = document.getElementsByClassName('postID');
+  var a = [];
+
+  for (var i = 0; i < PID.length; i++) {
+    //push the post id inside array
+    a.push(PID[i].innerHTML);
+  }
+//adding the click listener to table th element
+for (var i = 0; i < B.length; i++) {
+    B[i].addEventListener("click", showCommentContainer());
+}
+function showCommentContainer(){
+
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] == input ) {
+            commCont[i].style.display = "block";
+      }
+    }
+  }
+}
+
+
+
+
+$("#search").focus(function() {
+  //live search
+  $(document).ready(function(){
+    $('#search').keyup(function(){
+      $('#result').html('');
+      var searchField = $('#search').val();
+      var expression = new RegExp(searchField, "i");
+
+      $.getJSON('http://localhost:8080/api/users', function(data){
+          $.each(data, function(key, value){
+            if(value.Name.search(expression) != -1 || value.Username.search(expression) != -1){
+              if(searchField != 0){
+                $('#result').append('<li class="list-group-item" style="padding: 10px;"><a href="/'+value.id+'">  <img src="'+value.ProfilePictureURL+'"  height="40" width="40" align="center" class="img-thumbnal" /> '+value.Name+' | <span style="color: rgb(162, 162, 162)"> '+value.Username+'</span> </a></li>');
+              }else{
+                $('#result').html('');
+              }
+            }
+          });
+      });
+    });
+  });
+}).blur(function() {
+});

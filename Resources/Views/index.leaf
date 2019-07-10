@@ -1,13 +1,30 @@
 #set("content"){
 
-  <div class="container">
+  <!-- cookie -->
+  #if(showCookieMessage) {
+
+    <div id="cookie-footer" >
+      <div id="cookieMessage" style="width:100%;background-color:red;margin:0px;padding:10px;" >
+        <span>
+          This site uses cookies! To accept this, click
+          <a href="#" onclick="cookiesConfirmed()" style="background-color:grey;color:white;padding:5px;border-radius:50%">OK</a>
+        </span>
+      </div>
+    </div>
+  }
+
+  <!-- notification -->
+
+  <div class="container" id="container">
+
+    <script type="text/javascript" src="./styles/js/index.js" ></script>
     <div id="searchSection" class="container-searchSection">
-        <form class="" action="index.html" method="post">
+
           <div class="search-container">
-              <input type="text" name="search" placeholder="Search for..">
+              <input type="text" name="search" id="search" class="form-control"  placeholder="Search for.." />
               <i class="fas fa-search" style="cursor: pointer;position:relative;"></i>
           </div>
-        </form>
+            <ul class="list-group" id="result"></ul>
     </div>
 
     <div class="container-userSection">
@@ -164,8 +181,17 @@
 
                   <table class="info-holder" style="border-collapse: collapse;width:100%;">
                     <tr>
-                        <th rowspan="2" align="left" style="width:38px;padding-bottom:10px"><img src="#(post.creatorInfo.ProfilePictureURL)" style="width:35px;border-radius: 50%;height:auto;"/></th>
-                        <th align="left" style="padding-top:10px;color: rgb(24, 124, 124);text-shadow: 0px 0px 10px #060606;">#(post.creatorInfo.Name)</th>
+
+                        <th rowspan="2" align="left" style="width:38px;padding-bottom:10px">
+                          <a href="#if(user.id != post.creatorInfo.id){/#(post.creatorInfo.id)}else{/profile}" title="#(post.creatorInfo.Name)">
+                          <img src="#(post.creatorInfo.ProfilePictureURL)" style="width:35px;border-radius: 50%;height:auto;"/>
+                          </a>
+                        </th>
+
+                        <th align="left" style="padding-top:10px;color: rgb(24, 124, 124);text-shadow: 0px 0px 10px #060606;">
+                          #(post.creatorInfo.Username)
+                        </th>
+
                         <th rowspan="2" align="right" style="padding-bottom:25px">
 
                           #if(post.Typeofpost == "Public"){
@@ -231,7 +257,7 @@
               }
               <!-- hidden info -->
 
-              <div class="commentsContainer" style="width:100%">
+              <div class="commentsContainer" style="width:100%;display:none;">
                 #if(comments){
 
                   #for(comment in comments){
@@ -242,12 +268,12 @@
                         <tr >
 
                           <td style="color:rgba(255, 255, 255, 1);vertical-align:top;">
-                            <a href="" class="user">
+                            <a href="#if(user.id != comment.creatorInfo.id){/#(comment.creatorInfo.id)}else{/profile}" title="#(comment.creatorInfo.Name)" class="user">
                             <img class="commenter-image" align="top" src="#(comment.creatorInfo.ProfilePictureURL)" style="border-radius: 50%;width:20px;height:auto;"/>
                             </a>
                           </td>
                           <td align="left" style="background-color:rgba(225, 245, 250, 0.5);border-radius:10px;padding:8px;width:100%;">
-                            <a href=""><span style="color: rgba(24, 124, 124, 1);font-weight:bold">#(comment.creatorInfo.Name)</span></a>
+                            <a href=""><span style="color: rgba(24, 124, 124, 1);font-weight:bold">#(comment.creatorInfo.Username):</span></a>
                             <span style="color: rgba(255, 255, 255, 1);font-size:12;text-shadow: 0px 0px 10px #009da6;">#(comment.Text)</span>
                           </td>
                           <tr>
@@ -265,20 +291,22 @@
                 }else {
                   <p>no comment yet</p>
                 }
-                <!-- TODO:make a socket.io listener event -->
-                <div class="comment-form" style="margin-top: 25px;">
-                  <form action="/createComment#(comment.id)" method="post">
-                    <table width="99%">
-                      <tr>
-                        <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;">
-                          <input type="hidden" name="postID" value="#(post.id)">
-                          <input type="text" name="Text" placeholder="comment here..."  required>
-                        </td>
-                        <td align="left" style="width:1%"><input type="submit" name="" value="" style="border:1px solid #ccc"></td>
-                      </tr>
-                    </table>
-                  </form>
-                </div>
+              </div>
+              <!-- TODO:make a socket.io listener event -->
+
+
+              <div class="comment-form" style="margin-top: 25px;">
+                <form action="/createComment" method="post">
+                  <table width="99%">
+                    <tr>
+                      <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;">
+                        <input type="hidden" name="postID" value="#(post.id)">
+                        <input type="text" name="Text" placeholder="comment here..."  required>
+                      </td>
+                      <td align="left" style="width:1%"><input type="submit" name="" value="" style="border:1px solid #ccc"></td>
+                    </tr>
+                  </table>
+                </form>
               </div>
             </div>
           </div>
@@ -292,7 +320,27 @@
       <div class="global-div">
         <div class="global-div-header" style="border-top-right-radius:5px;">
         </div>
-        <div class="global-div-body" style="height:400px;">
+        <div class="global-div-body" style="height:400px;overflow-y: scroll;">
+
+          #for(otherusers in allusers){
+            <table>
+              <ul>
+                <li>
+                  <!-- dont show the current users on the list of other users -->
+                  #if(user.id != otherusers.id){
+                    <a href="/#(otherusers.id)" alt="#(otherusers.Name)" title="#(otherusers.Name)">
+                      <p style="padding: 0.5em;"><img src="#(otherusers.ProfilePictureURL)" style="width: 10%;padding-bottom: 0.5em" align="middle" >
+                       #(otherusers.Username)</p>
+                     </a>
+                     <hr>
+                  }
+                </li>
+                <li>
+                </li>
+              </ul>
+            </table>
+          }
+
         </div>
         <div class="global-div-footer" style="border-bottom-right-radius:5px;">
         </div>

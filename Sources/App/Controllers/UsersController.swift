@@ -9,7 +9,7 @@ struct UsersController: RouteCollection {
         let usersRoute = router.grouped("api","users")
         usersRoute.post(User.self, use: createHandler)
         usersRoute.get(use: getAllHandler)
-        usersRoute.get(User.Public.parameter, use: getHandler)
+        usersRoute.get(User.parameter, use: getHandler)
         usersRoute.delete(User.parameter, use: deleteHandler)
         usersRoute.get("search", use: searchHandler)
         usersRoute.get(User.parameter, "posts", use: getPostsHandler)
@@ -20,13 +20,12 @@ struct UsersController: RouteCollection {
         basicAuthGroup.post("login", use: loginHandler)
         
         //bearer auto
-        //let tokenAuthMiddleware = User.tokenAuthMiddleware()
-        //let guardAuthMiddleware = User.guardAuthMiddleware()
-        //let tokenAuthGroup = usersRoute.grouped(tokenAuthMiddleware,guardAuthMiddleware)
+        let tokenAuthMiddleware = User.tokenAuthMiddleware()
+        let guardAuthMiddleware = User.guardAuthMiddleware()
+        let tokenAuthGroup = usersRoute.grouped(tokenAuthMiddleware,guardAuthMiddleware)
 
     }
 
-    
     func createHandler(_ req: Request, user: User) throws -> Future<User.Public> {
         
         //TODO:
@@ -83,7 +82,6 @@ struct UsersController: RouteCollection {
         let token = try Token.generate(for: user)
         return token.save(on: req)
     }
-
 }
 //User.Public
 extension User.Public: Parameter {}

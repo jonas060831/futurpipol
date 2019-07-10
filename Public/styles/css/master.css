@@ -47,7 +47,17 @@ html, body,h1{
 }
 
 
-
+/* Searchbar */
+.list-group{
+  background-color: rgba(0, 0, 0, 0.83);
+  z-index: 1;
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+}
+.list-group li:hover {
+  background-color: rgba(56, 56, 56, 0.83);
+}
 
 /* -----------base.leaf PAGE------------- */
 .global-div {
@@ -80,7 +90,6 @@ html, body,h1{
 .user-nav{
   color:white;
   text-shadow: none;
-
 }
 .user-nav ul{
   width: 100%;
@@ -107,13 +116,12 @@ html, body,h1{
 }
 .log-nav li a:hover:not(.active) {
   text-shadow: 1px 1px 10px #fff;
-
 }
+
 .log-nav li.active a {
   text-shadow: 1px 1px 10px #fff;
   font-weight: bold;
 }
-
 
 /* -----------login.leaf PAGE------------- */
 
@@ -125,7 +133,7 @@ html, body,h1{
     padding: 20px;
     width: 300px;
     position: absolute;
-    height: 200px;
+    height: auto;
     top: 50%;
     left: 50%;
     margin: -100px 0 0 -150px;
@@ -311,8 +319,7 @@ input[type='checkbox'].toggle {
 }
 
 
-
-
+/* -----------profile.leaf PAGE------------- */
 
 /* -----------index.leaf PAGE------------- */
 .search-container input[type=text]  {
@@ -386,7 +393,7 @@ input[type='checkbox'].toggle {
   height:auto;
   background: none;
   padding-left: 10px;
-  
+
 }
 .postForm-button {
   width: 50px;
@@ -493,7 +500,7 @@ input[type='checkbox'].toggle {
     height: 485px;
   }
 }
-/* Desktop Versio */
+/* Desktop Version */
 @media screen and (min-width: 960px){
 
   .container {

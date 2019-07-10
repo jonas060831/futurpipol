@@ -33,19 +33,23 @@
       </div>
       <!-- body -->
       <form method="post">
-        <input type="text" id="username" name="Username" placeholder="email or mobile number" autofocus>
-        <input type="password" id="password" name="Password" placeholder="password">
+        <input type="text" id="name" name="Name" placeholder="Name" autofocus>
+        <input type="text" id="username" name="Username" placeholder="email or mobile number">
+        <input type="password" id="password" name="repeatPassword" placeholder="password">
+        <input type="password" id="password" name="Password" placeholder="repeat password">
+        <p>Please select your gender:</p>
+        <input type="radio" name="Gender" value="Male"> Male<br>
+        <input type="radio" name="Gender" value="Female"> Female<br>
+
         <input id="loginButton" type="submit" value="">
+
       </form>
       <!-- footer -->
       <div class="login-form-footer">
         <table class="SUorFP" width="100%">
             <tr>
               <th style="text-align:left">
-                <a href="/signup">sign up</a>
-              </th>
-              <th style="text-align:right">
-                <a href="#" >forgot password</a>
+                <a href="/login">back to login</a>
               </th>
             </tr>
         </table>

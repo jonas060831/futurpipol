@@ -10,16 +10,16 @@
       </div>
     </div>
   }
-  <div class="container">
+  <div class="container" id="container">
 
     <script type="text/javascript" src="./styles/js/index.js" ></script>
     <div id="searchSection" class="container-searchSection">
 
           <div class="search-container">
-              <input type="text" name="search" id="search" class="form-control" placeholder="Search for.." />
+              <input type="text" name="search" id="search" class="form-control"  placeholder="Search for.." />
               <i class="fas fa-search" style="cursor: pointer;position:relative;"></i>
           </div>
-          <ul class="list-group" id="result"></ul>
+            <ul class="list-group" id="result"></ul>
     </div>
 
     <div class="container-userSection" style="visibility: hidden">
@@ -101,14 +101,15 @@
       </div>
     </div>
 
-    <div class="container-postSection" >
+    <div class="container-postSection">
 
         <div class="global-div" style="background-color: rgba(255, 255, 255, 0.55);padding: 5px;margin-bottom: 10px;border-top-left-radius:5px;border-top-right-radius:5px;">
           <div class="user-profile" style="margin: 0px auto">
-              <img src="#(user.ProfilePictureURL)" width="30%" alt="" style="display: block;margin-left: auto;margin-right: auto;border:2px solid rgb(255, 255, 255);border-radius: 50%">
-              <p align="center" style="color: black;font-size: 2.5em"><strong>#(user.Name)</strong></p>
+              <img src="#(otheruser.ProfilePictureURL)" width="30%" alt="" style="display: block;margin-left: auto;margin-right: auto;">
+              <p align="center" style="color: black;font-size: 2.5em"><strong>#(otheruser.Name)</strong></p>
           </div>
         </div>
+
 
         <div class="userInfo" style="background-color: rgba(255, 255, 255, 0.55);padding: 5px;margin-bottom: 10px;height:5em;">
           <table style="width:100%;margin-top:20px;">
@@ -158,8 +159,8 @@
         <div class="global-div">
           <form action="" method="post">
 
-            <div class="global-div-header" style="padding:15px" >
-              <table class="postForm-header" width="100%" >
+            <div class="global-div-header" style="padding:15px">
+              <table class="postForm-header" width="100%">
                   <th width="1%">
                     <i class="fas fa-edit fa-sm"></i>
                   </th>
@@ -173,8 +174,8 @@
             </div>
             <div class="global-div-body">
                   <div class="postForm-input-container">
-                      <a href="/profile"><img style="cursor:pointer" src="#(user.ProfilePictureURL)"/></a>
-                      <textarea class="postForm-Text" name="Text" maxlength="1001" onkeyup="postTextCounter(this)" rows="5" placeholder="Thoughts.." required></textarea>
+                      <a href="/"><img style="cursor:pointer" src="#(user.ProfilePictureURL)"/></a>
+                      <textarea class="postForm-Text" name="Text" maxlength="1001" onkeyup="postTextCounter(this)" rows="5" placeholder="Thoughts #if(user != otheruser){for #(otheruser.Name)}.." required></textarea>
                       <div id="charNum" style="font-size:9px;text-align:right;width:95%;height:9px;margin:0px auto;"></div>
                       <input type="hidden" name="creatorID" value="#(user.id)">
 
@@ -223,134 +224,135 @@
     #if(posts){
           #for(post in posts){
 
-            #if(post.creatorInfo.id == user.id){
-              <div class="global-div"style="background:none;padding-bottom:5px;">
-                <div class="global-div-header" style="background-color:rgba(255, 255, 255, 0.2);padding:5px;border-top-left-radius:2px;border-top-right-radius:2px;">
-                  <!-- profilepic, name, timestamp,useragent, typeof post and settings shows here -->
+            #if(post.creatorInfo.id == otheruser.id ){
+                <div class="global-div"style="background:none;padding-bottom:5px;">
+                  <div class="global-div-header" style="background-color:rgba(255, 255, 255, 0.2);padding:5px;border-top-left-radius:2px;border-top-right-radius:2px;">
+                    <!-- profilepic, name, timestamp,useragent, typeof post and settings shows here -->
 
 
-                      <table class="info-holder" style="border-collapse: collapse;width:100%;">
-                        <tr>
-                            <th rowspan="2" align="left" style="width:38px;padding-bottom:10px"><img src="#(post.creatorInfo.ProfilePictureURL)" style="width:35px;border-radius: 50%;height:auto;"/></th>
-                            <th align="left" style="padding-top:10px;color: rgb(24, 124, 124);text-shadow: 0px 0px 10px #060606;">#(post.creatorInfo.Name)</th>
-                            <th rowspan="2" align="right" style="padding-bottom:25px">
+                        <table class="info-holder" style="border-collapse: collapse;width:100%;">
+                          <tr>
+                              <th rowspan="2" align="left" style="width:38px;padding-bottom:10px"><img src="#(post.creatorInfo.ProfilePictureURL)" style="width:35px;border-radius: 50%;height:auto;"/></th>
+                              <th align="left" style="padding-top:10px;color: rgb(24, 124, 124);text-shadow: 0px 0px 10px #060606;">#(post.creatorInfo.Name)</th>
+                              <th rowspan="2" align="right" style="padding-bottom:25px">
 
-                              #if(post.Typeofpost == "Public"){
-                                  <i class="fas fa-globe-asia" style="cursor:pointer"></i>
-                              }
-                              #if(post.Typeofpost == "Friends Only"){
-                                  <i class="fas fa-user-friends" style="cursor:pointer"></i>
-                              }
-                              #if(post.Typeofpost == "Only Me"){
-                                  <i class="fas fa-user" style="cursor:pointer"></i>
-                              }
-                              #if(post.Typeofpost == "Customize"){
-                                  <i class="fas fa-users-cog" style="cursor:pointer"></i>
-                              }
-                            </th>
-                        </tr>
-                        <tr>
-                            <td align="left" class="timeStampRaw" style="padding-bottom:20px;font-size:7px;display:none;">#(post.createdAt)</td>
-                            <td align="left" class="" style="padding-bottom:20px;font-size:7px;"><span class="timeStamp"></span></td>
-                        </tr>
-                     </table>
+                                #if(post.Typeofpost == "Public"){
+                                    <i class="fas fa-globe-asia" style="cursor:pointer"></i>
+                                }
+                                #if(post.Typeofpost == "Friends Only"){
+                                    <i class="fas fa-user-friends" style="cursor:pointer"></i>
+                                }
+                                #if(post.Typeofpost == "Only Me"){
+                                    <i class="fas fa-user" style="cursor:pointer"></i>
+                                }
+                                #if(post.Typeofpost == "Customize"){
+                                    <i class="fas fa-users-cog" style="cursor:pointer"></i>
+                                }
+                              </th>
+                          </tr>
+                          <tr>
+                              <td align="left" class="timeStampRaw" style="padding-bottom:20px;font-size:7px;display:none;">#(post.createdAt)</td>
+                              <td align="left" class="" style="padding-bottom:20px;font-size:7px;"><span class="timeStamp"></span></td>
+                          </tr>
+                       </table>
 
-                </div>
-                <div class="global-div-body" style="background-color:rgba(255, 255, 255, 0.2);border-radius:0px;">
-                  <table style="width:90%">
-                    <thead align="left" style="">
-                      <!-- data.content.1 -->
-                      <div class="text-container" style="text-align:left;margin:10px;">
-                        <strong style="width:100%;">#(post.Text)</strong>
-                      </div>
-                    </thead>
-                    <tbody>
-                      <div class="body-post-container" style="width:100%;overflow:hidden">
-                      <!-- data.content.2 -->
-                      #if(post.Image){
-                        <img src="#(post.Image)" alt="" style="width:100%;">
-                      }
-                      <!-- data.content.3 -->
-                      #(post.Images)
-                      <!-- data.content.4 -->
-                      #if(post.Video){
-                        <video width="100%" controls>
-                            <source src="#(post.Video)" type="video/mp4">
-                        </video>
-                      }
-                      </div>
-                    </tbody>
-                  </table>
-                  <!-- star and comment -->
-                  <table style="width:100%;">
-                      <th style="padding:5px;"width="98%">&nbsp;</th>
-                      <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-star"></i></th>
-                      <th class="showCommentButton" onclick="showAllComment(#(post.id))" style="cursor:pointer;padding:5px;font-size:10px;" align="right" ><span class="commentCount" style="font-size:14px;margin-right:2px;"></span><i class="fas fa-comment-dots"></i></th>
-                  </table>
-                </div>
-                <div class="global-div-footer" style="height:auto;background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius:2px;border-bottom-right-radius:2px;margin-top:1px;margin-bottom:30px;padding:10px;">
-
-                  <!-- hidden info -->
-                  <span class="postID" style="display: none">#(post.id)</span>
-                  #if(post){<span id="totalcommentsCount" style="display:none">#(commentCount)</span>}
-                  #for(comment in comments){
-                    <span class="commentPostID" style="display: none">#(comment.postID)</span>
-                  }
-                  <!-- hidden info -->
-
-                  <div class="commentsContainer" style="width:100%">
-                    #if(comments){
-
-                      #for(comment in comments){
-
-                        #if(comment.postID == post.id){
-
-                          <table class="commentsTable">
-                            <tr >
-
-                              <td style="color:rgba(255, 255, 255, 1);vertical-align:top;">
-                                <a href="#if(comment.creatorInfo.id != user.id){/#(comment.creatorInfo.id)}else{/profile}" class="user">
-                                <img class="commenter-image" align="top" src="#(comment.creatorInfo.ProfilePictureURL)" style="border-radius: 50%;width:20px;height:auto;"/>
-                                </a>
-                              </td>
-                              <td align="left" style="background-color:rgba(225, 245, 250, 0.5);border-radius:10px;padding:8px;width:100%;">
-                                <a href=""><span style="color: rgba(24, 124, 124, 1);font-weight:bold">#(comment.creatorInfo.Name)</span></a>
-                                <span style="color: rgba(255, 255, 255, 1);font-size:12;text-shadow: 0px 0px 10px #009da6;">#(comment.Text)</span>
-                              </td>
-                              <tr>
-                                <td></td>
-                                <td align="right">
-                                  <span class="timeStampRaw"style="font-size:8px;display:none;">#(comment.createdAt)</span>
-                                  <span class="timeStamp" style="font-size:8px;"></span>
-                                </td>
-                              </tr>
-                            </tr>
-                            <br>
-                          </table>
+                  </div>
+                  <div class="global-div-body" style="background-color:rgba(255, 255, 255, 0.2);border-radius:0px;">
+                    <table style="width:90%">
+                      <thead align="left" style="">
+                        <!-- data.content.1 -->
+                        <div class="text-container" style="text-align:left;margin:10px;">
+                          <strong style="width:100%;">#(post.Text)</strong>
+                        </div>
+                      </thead>
+                      <tbody>
+                        <div class="body-post-container" style="width:100%;overflow:hidden">
+                        <!-- data.content.2 -->
+                        #if(post.Image){
+                          <img src="#(post.Image)" alt="" style="width:100%;">
                         }
-                      }
-                    }else {
-                      <p>no comment yet</p>
-                    }
+                        <!-- data.content.3 -->
+                        #(post.Images)
+                        <!-- data.content.4 -->
+                        #if(post.Video){
+                          <video width="100%" controls>
+                              <source src="#(post.Video)" type="video/mp4">
+                          </video>
+                        }
+                        </div>
+                      </tbody>
+                    </table>
+                    <!-- star and comment -->
+                    <table style="width:100%;">
+                        <th style="padding:5px;"width="98%">&nbsp;</th>
+                        <th style="cursor:pointer;padding:5px;font-size:10px;" align="right"><i class="fas fa-star"></i></th>
+                        <th class="showCommentButton" onclick="showAllComment(#(post.id))" style="cursor:pointer;padding:5px;font-size:10px;" align="right" ><span class="commentCount" style="font-size:14px;margin-right:2px;"></span><i class="fas fa-comment-dots"></i></th>
+                    </table>
                   </div>
-                  <!-- TODO:make a socket.io listener event -->
+                  <div class="global-div-footer" style="height:auto;background-color:rgba(255, 255, 255, 0.2);border-bottom-left-radius:2px;border-bottom-right-radius:2px;margin-top:1px;margin-bottom:30px;padding:10px;">
+
+                    <!-- hidden info -->
+                    <span class="postID" style="display: none">#(post.id)</span>
+                    #if(post){<span id="totalcommentsCount" style="display:none">#(commentCount)</span>}
+                    #for(comment in comments){
+                      <span class="commentPostID" style="display: none">#(comment.postID)</span>
+                    }
+                    <!-- hidden info -->
+
+                    <div class="commentsContainer" style="width:100%">
+                      #if(comments){
+
+                        #for(comment in comments){
+
+                          #if(comment.postID == post.id){
+
+                            <table class="commentsTable">
+                              <tr >
+
+                                <td style="color:rgba(255, 255, 255, 1);vertical-align:top;">
+                                  <a href="#if(comment.creatorInfo.id != user.id){/#(comment.creatorInfo.id)}else{/profile}" class="user">
+                                  <img class="commenter-image" align="top" src="#(comment.creatorInfo.ProfilePictureURL)" style="border-radius: 50%;width:20px;height:auto;"/>
+                                  </a>
+                                </td>
+                                <td align="left" style="background-color:rgba(225, 245, 250, 0.5);border-radius:10px;padding:8px;width:100%;">
+                                  <a href=""><span style="color: rgba(24, 124, 124, 1);font-weight:bold">#(comment.creatorInfo.Name)</span></a>
+                                  <span style="color: rgba(255, 255, 255, 1);font-size:12;text-shadow: 0px 0px 10px #009da6;">#(comment.Text)</span>
+                                </td>
+                                <tr>
+                                  <td></td>
+                                  <td align="right">
+                                    <span class="timeStampRaw"style="font-size:8px;display:none;">#(comment.createdAt)</span>
+                                    <span class="timeStamp" style="font-size:8px;"></span>
+                                  </td>
+                                </tr>
+                              </tr>
+                              <br>
+                            </table>
+                          }
+                        }
+                      }else {
+                        <p>no comment yet</p>
+                      }
+                    </div>
+                    <!-- TODO:make a socket.io listener event -->
 
 
-                  <div class="comment-form" style="margin-top: 25px;">
-                    <form action="/createComment" method="post">
-                      <table width="99%">
-                        <tr>
-                          <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;">
-                            <input type="hidden" name="postID" value="#(post.id)">
-                            <input type="text" name="Text" placeholder="comment here..."  required>
-                          </td>
-                          <td align="left" style="width:1%"><input type="submit" name="" value="" style="border:1px solid #ccc"></td>
-                        </tr>
-                      </table>
-                    </form>
+                    <div class="comment-form" style="margin-top: 25px;">
+                      <form action="/createComment" method="post">
+                        <table width="99%">
+                          <tr>
+                            <td style="padding-bottom: 10px;border:0;-webkit-appearance: none;">
+                              <input type="hidden" name="postID" value="#(post.id)">
+                              <input type="text" name="Text" placeholder="comment here..."  required>
+                            </td>
+                            <td align="left" style="width:1%"><input type="submit" name="" value="" style="border:1px solid #ccc"></td>
+                          </tr>
+                        </table>
+                      </form>
+                    </div>
                   </div>
                 </div>
-              </div>
+
           }
         }
     }else {

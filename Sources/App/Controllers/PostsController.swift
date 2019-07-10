@@ -120,7 +120,6 @@ struct PostsController: RouteCollection {
             PostWithComments(id: post.id, Post: post, Comments: comments)
             }
         }
-        
     }
 }
 

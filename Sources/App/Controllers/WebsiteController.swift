@@ -16,11 +16,18 @@ struct WebsiteController: RouteCollection {
         protectedRoutes.get("profile", use: profileHandler)
         protectedRoutes.get("settings", use: settingsHandler)
         protectedRoutes.post("createComment", use: createCommentHandler)
+        //other user
+        protectedRoutes.get(User.parameter, use: otherUserPage)
+        
         
         //redirect AUTHENTICATED users to home page when trying to visit login page
         let protectedRoutes2 = authSessionsRoutes.grouped(InverseRedirectMiddleware<User>.home())
         protectedRoutes2.get("login", use: loginHandler)
         protectedRoutes2.post(LoginPostData.self, at: "login", use: loginPostHandler)
+        
+        //sign up
+        router.get("signup", use: signupHandler)
+        router.post(SignupPostData.self, at: "signup", use: signupPostHandler)
         
         
         //logout the user
@@ -29,23 +36,35 @@ struct WebsiteController: RouteCollection {
     }
     
     func indexHandler(_ req: Request) throws -> Future<View> {
-
+        
+        return User.query(on: req).sort(\.Name, .ascending).all().flatMap(to: View.self) { allusers in
+            
             return Post.query(on: req).sort(\.id, .descending).all().flatMap(to: View.self) { posts in
                 
                 return Comment.query(on: req).sort(\.id, .ascending).all().flatMap(to: View.self) { comments in
-                //get the authenticated user
-                let user = try req.requireAuthenticated(User.self)
-                let posts = posts.isEmpty ? nil : posts
-                let context = IndexContext(
-                    title: "futurpipol",
-                    posts: posts,
-                    comments: comments,
-                    user: user,
-                    commentCount: comments.count
-                )
-                return try req.view().render("index", context)
+                    //get the authenticated user
+                    let user = try req.requireAuthenticated(User.self)
+                    let posts = posts.isEmpty ? nil : posts
+                    let showCookieMessage = req.http.cookies["cookies-accepted"] == nil
+                    
+                    
+                    
+                    let context = IndexContext(
+                        title: "futurpipol",
+                        posts: posts,
+                        comments: comments,
+                        user: user,
+                        allusers:  allusers,
+                        commentCount: comments.count,
+                        showCookieMessage: showCookieMessage
+                    )
+                    return try req.view().render("index", context)
                 }
             }
+            
+            
+        }
+        
     }
     func createPostHandler(_ req: Request) throws -> Future<Response> {
         return try req.content.decode(PostData.self).flatMap(to: Response.self) { data in
@@ -88,13 +107,21 @@ struct WebsiteController: RouteCollection {
     }
     func profileHandler(_ req: Request) throws -> Future<View> {
         
-            let userData = try req.requireAuthenticated(User.self)
-            let context = ProfileContext(
-                title: "Profile",
-                user: userData
-            )
-            return try req.view().render("profile", context)
+        let userData = try req.requireAuthenticated(User.self)
         
+        return Post.query(on: req).sort(\.id, .descending).all().flatMap(to: View.self) { posts in
+            
+            return Comment.query(on: req).sort(\.id, .ascending).all().flatMap(to: View.self) { comments in
+                let context = ProfileContext(
+                    title: "Profile",
+                    user: userData,
+                    posts: posts,
+                    comments: comments,
+                    commentCount: comments.count
+                )
+                return try req.view().render("profile", context)
+            }
+        }
     }
     func settingsHandler(_ req: Request) throws -> Future<View> {
         //get the authenticated user
@@ -128,6 +155,68 @@ struct WebsiteController: RouteCollection {
             return req.redirect(to: "/")
         }
     }
+    func signupHandler(_ req: Request) throws -> Future<View> {
+        let context = SignupContext()
+        
+        return try req.view().render("signup", context)
+    }
+    
+    func otherUserPage(_ req: Request) throws -> Future<View> {
+        
+        //get the authenticated user
+        let user = try req.requireAuthenticated(User.self)
+            return try req.parameters.next(User.self).flatMap(to: View.self) { otheruser in
+                
+              return Post.query(on: req).sort(\.id, .descending).all().flatMap(to: View.self) { posts in
+                
+                return Comment.query(on: req).sort(\.id, .ascending).all().flatMap(to: View.self) { comments in
+                
+                    let context = otherUsersPageContext(
+                        title: "\(otheruser.Name)",
+                        otheruser: otheruser, user : user,
+                        posts: posts,
+                        comments: comments,
+                        commentCount: comments.count
+                    )
+                 
+                    return try req.view().render("other-user", context)
+                    
+                    }
+                }
+            }
+    }
+
+    
+    
+    
+    //TODO: Sign up post handler
+    func signupPostHandler(_ req: Request, signupdata : SignupPostData) throws -> Future<Response> {
+        return try req.content.decode(SignupPostData.self).flatMap(to: Response.self) { data in
+            
+            //get the authenticated user
+            //let user = try req.requireAuthenticated(User.self)
+            
+            //assign a profile picture userimage from db
+            let rand = SimpleRandom.random(1...5)
+            let gend = data.Gender
+            
+            let pfURL = "https://s3.us-east-2.amazonaws.com/futurpipol/Uploads/Images/ProfilePicture/Default/\(gend)/avatar\(rand).png"
+            
+            
+            //specify the cost higher number means longer hash & verify time
+            let hashedpw = try BCrypt.hash(data.Password, cost: 15)
+            
+            
+            let createuser = User(Name: data.Name, Username: data.Username, Password: hashedpw, Gender: data.Gender, ProfilePictureURL: pfURL)
+            
+            return createuser.save(on: req).map(to: Response.self) { saveduser in
+                try req.authenticateSession(saveduser)
+                return req.redirect(to: "/")
+            }
+        }
+    }
+    
+    
     func logoutHandler(_ req: Request) throws -> Response {
         
         //destroy the session
@@ -136,14 +225,18 @@ struct WebsiteController: RouteCollection {
         try req.destroySession()
         return req.redirect(to: "/login")
     }
+    
 }
+
 
 struct IndexContext: Content {
     let title: String
     let posts: [Post]?
     let comments: [Comment]?
     let user: User
+    let allusers : [User]?
     let commentCount: Int?
+    let showCookieMessage: Bool
 }
 struct PostData: Content {
     static var defaultMediaType =  MediaType.urlEncodedForm
@@ -158,6 +251,9 @@ struct PostData: Content {
 struct ProfileContext: Encodable {
     let title: String
     let user: User
+    let posts: [Post]
+    let comments: [Comment]
+    let commentCount: Int?
 }
 
 struct settingsContext: Encodable {
@@ -178,6 +274,25 @@ struct LoginPostData: Content {
     static var defaultMediaType =  MediaType.urlEncodedForm
     let Username: String
     let Password: String
+}
+struct SignupContext: Encodable {
+    let title = "Sign Up"
+}
+struct SignupPostData: Content {
+    static var defaultMediaType =  MediaType.urlEncodedForm
+    let Name: String
+    let Username: String
+    let Password: String
+    let Gender: String
+}
+
+struct otherUsersPageContext : Encodable {
+    let title: String
+    let otheruser : User
+    let user : User
+    let posts: [Post]
+    let comments: [Comment]
+    let commentCount: Int?
 }
 
 struct PostCommentData: Content {
